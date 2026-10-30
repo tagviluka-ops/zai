@@ -7,15 +7,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --pink-main: #ff7ebb;
-            --pink-soft: #ffe4eefc;
-            --teal-main: #0d9488;
-            --teal-light: #ccfbf1;
-            --card-glass: rgba(255, 255, 255, 0.85);
+            --bg-gradient: linear-gradient(165deg, #a7f3d0 0%, #5eead4 25%, #fbcfe8 70%, #f472b6 100%);
+            --card-glass: rgba(255, 255, 255, 0.88);
             --card-border: rgba(255, 255, 255, 0.95);
+            --title-color: #0d9488;
             --text-dark: #2d3748;
+            --btn-main: linear-gradient(135deg, #ff7ebb, #f43f5e);
             --font-title: 'Fredoka One', cursive;
             --font-body: 'Nunito', sans-serif;
+        }
+
+        /* EVIL CHEESE NIGHTMARE MODE THEME */
+        body.cheese-nightmare {
+            --bg-gradient: linear-gradient(165deg, #78350f 0%, #b45309 30%, #f59e0b 70%, #fef08a 100%);
+            --card-glass: rgba(254, 243, 199, 0.92);
+            --card-border: #f59e0b;
+            --title-color: #78350f;
+            --text-dark: #451a03;
+            --btn-main: linear-gradient(135deg, #d97706, #b45309);
         }
 
         * {
@@ -24,11 +33,12 @@
             padding: 0;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
+            transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease;
         }
 
         body {
             font-family: var(--font-body);
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: #0f172a;
             color: var(--text-dark);
             min-height: 100vh;
             display: flex;
@@ -37,12 +47,12 @@
             overflow-x: hidden;
         }
 
-        /* iPhone Simulation Container (Looks stunning on iPhone & PC) */
+        /* Mobile Container Layout */
         .mobile-container {
             width: 100%;
             max-width: 430px;
             min-height: 100vh;
-            background: linear-gradient(165deg, #a7f3d0 0%, #5eead4 25%, #fbcfe8 70%, #f472b6 100%);
+            background: var(--bg-gradient);
             background-size: 200% 200%;
             animation: gradientFlow 10s ease infinite;
             position: relative;
@@ -60,7 +70,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating Background Items */
+        /* Floating Items Background */
         .floating-bg {
             position: absolute;
             inset: 0;
@@ -72,15 +82,15 @@
         .bg-item {
             position: absolute;
             font-size: 1.6rem;
-            opacity: 0.3;
-            animation: floatUp 12s linear infinite;
+            opacity: 0.35;
+            animation: floatUp 10s ease-in-out infinite;
         }
 
         @keyframes floatUp {
-            0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.35; }
-            80% { opacity: 0.35; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+            0% { transform: translateY(105vh) rotate(0deg) scale(0.8); opacity: 0; }
+            20% { opacity: 0.4; }
+            80% { opacity: 0.4; }
+            100% { transform: translateY(-10vh) rotate(360deg) scale(1.1); opacity: 0; }
         }
 
         /* UI Content Wrapper */
@@ -102,11 +112,12 @@
             border-radius: 24px;
             padding: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            animation: floatCard 6s ease-in-out infinite alternate;
         }
 
-        .card:active {
-            transform: scale(0.98);
+        @keyframes floatCard {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-4px); }
         }
 
         /* Hero Header */
@@ -116,33 +127,27 @@
             border-radius: 28px;
             padding: 24px 20px;
             box-shadow: 0 12px 35px rgba(255, 126, 187, 0.25);
-            animation: bounceIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: pulseHeader 3s ease-in-out infinite alternate;
         }
 
-        @keyframes bounceIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+        @keyframes pulseHeader {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.02); }
         }
 
         .hero-title {
             font-family: var(--font-title);
             font-size: 1.85rem;
-            background: linear-gradient(135deg, #0d9488 0%, #db2777 100%);
+            background: linear-gradient(135deg, var(--title-color) 0%, #db2777 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 6px;
         }
 
-        .hero-subtitle {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #475569;
-        }
-
         .card-title {
             font-family: var(--font-title);
             font-size: 1.25rem;
-            color: #0f766e;
+            color: var(--title-color);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -151,14 +156,14 @@
 
         .card-desc {
             font-size: 0.92rem;
-            color: #475569;
+            color: var(--text-dark);
             line-height: 1.4;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         /* Buttons & Actions */
         .cute-btn {
-            background: linear-gradient(135deg, #ff7ebb, #f43f5e);
+            background: var(--btn-main);
             color: white;
             border: none;
             padding: 12px 20px;
@@ -167,8 +172,8 @@
             font-size: 0.95rem;
             width: 100%;
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(244, 63, 94, 0.3);
-            transition: all 0.2s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -176,41 +181,69 @@
         }
 
         .cute-btn:active {
-            transform: scale(0.96);
+            transform: scale(0.95);
         }
 
         .cute-btn.teal {
             background: linear-gradient(135deg, #2dd4bf, #0f766e);
-            box-shadow: 0 6px 20px rgba(13, 148, 136, 0.3);
         }
 
-        /* Interactive Garden */
-        .garden-display {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+        /* EVIL BUTTON */
+        .evil-btn {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            color: white;
+            border: 3px solid #fef08a;
+            padding: 14px;
+            border-radius: 20px;
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            width: 100%;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
+            animation: pulseEvil 1.2s infinite alternate;
+        }
+
+        @keyframes pulseEvil {
+            0% { transform: scale(1); box-shadow: 0 0 10px rgba(220, 38, 38, 0.4); }
+            100% { transform: scale(1.04); box-shadow: 0 0 25px rgba(220, 38, 38, 0.9); }
+        }
+
+        /* Interactive Snack / Item Counters */
+        .snack-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
             margin-top: 10px;
-            min-height: 50px;
-            align-items: center;
-            justify-content: center;
         }
 
-        .flower-item {
-            font-size: 2rem;
-            animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        .snack-item {
+            background: rgba(255,255,255,0.7);
+            border-radius: 14px;
+            padding: 10px 4px;
+            text-align: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
         }
 
-        @keyframes popUp {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+        .snack-item:active {
+            transform: scale(1.2) rotate(10deg);
         }
 
-        /* Mini-Game Container */
+        .snack-count {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #0f766e;
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* Mini Game Canvas Box */
         #game-box {
             display: none;
             position: relative;
             width: 100%;
-            height: 280px;
+            height: 260px;
             background: #1e293b;
             border-radius: 16px;
             overflow: hidden;
@@ -221,7 +254,6 @@
         #game-canvas {
             width: 100%;
             height: 100%;
-            display: block;
         }
 
         .game-score {
@@ -231,74 +263,72 @@
             color: white;
             font-family: var(--font-title);
             font-size: 1rem;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.5);
             padding: 4px 10px;
             border-radius: 8px;
         }
 
-        /* Badges grid */
-        .badge-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+        /* Glam Station Glow Effect */
+        .glam-card {
+            background: linear-gradient(135deg, rgba(255,228,238,0.9), rgba(204,251,241,0.9));
         }
 
-        .badge {
-            background: rgba(255, 255, 255, 0.6);
-            padding: 10px;
-            border-radius: 14px;
-            text-align: center;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #334155;
-            border: 1px solid rgba(255,255,255,0.8);
+        .glam-active {
+            animation: glamGlow 1s ease infinite alternate;
         }
 
-        /* Anti-Cheese Warning Box */
-        .danger-box {
-            background: rgba(254, 226, 226, 0.85);
-            border: 2px dashed #ef4444;
-            border-radius: 20px;
-            padding: 16px;
-            text-align: center;
-        }
-
-        .danger-title {
-            font-family: var(--font-title);
-            color: #dc2626;
-            font-size: 1.1rem;
-            margin-bottom: 6px;
+        @keyframes glamGlow {
+            0% { box-shadow: 0 0 10px #ff7ebb; }
+            100% { box-shadow: 0 0 25px #2dd4bf; }
         }
     </style>
 </head>
 <body>
 
-    <div class="mobile-container">
-        <!-- Floating background icons -->
+    <div class="mobile-container" id="appContainer">
+        <!-- Floating background elements -->
         <div class="floating-bg" id="floatingBg"></div>
 
         <div class="content">
-            <!-- Hero Header -->
+            <!-- Header -->
             <div class="hero-card">
-                <h1 class="hero-title">For My Favorite Person 🌷</h1>
-                <p class="hero-subtitle">Pink & Teal Dreamland ✨</p>
+                <h1 class="hero-title" id="heroTitle">For My Favorite Person 🌷</h1>
+                <p style="font-size: 0.95rem; font-weight: 700; color: #475569;" id="heroSub">Pink & Teal Dreamland ✨</p>
+            </div>
+
+            <!-- Sweet Tooth & Treats Station -->
+            <div class="card">
+                <div class="card-title">🍰 Treats & Snack Bar</div>
+                <p class="card-desc">Tap your favorite treats to eat them! How many can you eat?</p>
+                <div class="snack-grid">
+                    <div class="snack-item" onclick="eatSnack('oreo')">🍦<span class="snack-count" id="oreoCount">0 Oreos</span></div>
+                    <div class="snack-item" onclick="eatSnack('cupcake')">🧁<span class="snack-count" id="cupcakeCount">0 Cakes</span></div>
+                    <div class="snack-item" onclick="eatSnack('donut')">🍩<span class="snack-count" id="donutCount">0 Donuts</span></div>
+                    <div class="snack-item" onclick="eatSnack('sushi')">🍣<span class="snack-count" id="sushiCount">0 Sushi</span></div>
+                </div>
+            </div>
+
+            <!-- Glam & Cozy Station -->
+            <div class="card glam-card" id="glamCard">
+                <div class="card-title">💄 Glam & Cozy Corner</div>
+                <p class="card-desc">Apply mascara, blush, and put on soft fluffy socks & onesies! 🧸</p>
+                <button class="cute-btn" onclick="applyGlam()">Glow Up ✨</button>
             </div>
 
             <!-- Flower Garden Card -->
             <div class="card">
-                <div class="card-title">🌸 Blooming Flower Garden</div>
-                <p class="card-desc">Tulips are lovely, but Lilies are even prettier! Tap to bloom your garden.</p>
-                <div class="garden-display" id="gardenDisplay">
-                    <span style="color: #64748b; font-size: 0.85rem; font-style: italic;">Garden is sleeping... Tap below!</span>
+                <div class="card-title">🌸 Blooming Garden</div>
+                <p class="card-desc">Tulips are sweet, but Lilies are the prettiest! Tap to bloom.</p>
+                <div id="gardenDisplay" style="display:flex; justify-content:center; gap:8px; min-height:40px; align-items:center; font-size:1.8rem;">
+                    <span style="font-size:0.85rem; color:#64748b;">Garden is sleeping...</span>
                 </div>
-                <button class="cute-btn teal" style="margin-top: 12px;" onclick="bloomGarden()">Bloom Flowers 🌷</button>
+                <button class="cute-btn teal" style="margin-top:10px;" onclick="bloomGarden()">Bloom Flowers 🌷</button>
             </div>
 
-            <!-- Mini-Game Card -->
+            <!-- Catch Goodies Mini-Game -->
             <div class="card">
-                <div class="card-title">🎮 Catch the Goodies!</div>
-                <p class="card-desc">Catch cupcakes, donuts, bunnies, and cute unloved cuties! Avoid the cheese 🧀!</p>
-                
+                <div class="card-title">🎮 Catch the Favorites!</div>
+                <p class="card-desc">Catch falling cupcakes, bunnies, and millipedes!</p>
                 <button id="gameToggleBtn" class="cute-btn" onclick="toggleGame()">Play Game 🕹️</button>
 
                 <div id="game-box">
@@ -307,65 +337,61 @@
                 </div>
             </div>
 
-            <!-- Favorite Things Grid -->
-            <div class="card">
-                <div class="card-title">💖 Her Favorite Things</div>
-                <div class="badge-grid">
-                    <div class="badge">🐱 Cats & Bunnies</div>
-                    <div class="badge">🧁 Cupcakes & Donuts</div>
-                    <div class="badge">🍣 Sushi & Oreos</div>
-                    <div class="badge">🎀 Hello Kitty & Pusheen</div>
-                    <div class="badge">🌸 Lilies & Tulips</div>
-                    <div class="badge">✨ Mascara & Blush</div>
-                    <div class="badge">🐾 Big Cats & Millipedes</div>
-                    <div class="badge">🧸 Plushies & Socks</div>
-                </div>
-            </div>
-
             <!-- Love the Unloved Card -->
-            <div class="card" style="background: linear-gradient(135deg, rgba(204,251,241,0.85), rgba(255,211,226,0.85));">
-                <div class="card-title">✨ Loving the Unloved</div>
-                <p class="card-desc">Your ultimate goal is to love the unloved—from gorgeous big cats to the sweetest little millipedes! 🐛💛🐾</p>
+            <div class="card" style="background: linear-gradient(135deg, rgba(204,251,241,0.9), rgba(255,211,226,0.9));">
+                <div class="card-title">🐆 Loving the Unloved 🐛</div>
+                <p class="card-desc">From majestic cheetahs & big cats to cute little millipedes—loving every unloved creature! 💛</p>
             </div>
 
-            <!-- Anti-Cheese Warning Zone -->
-            <div class="danger-box">
-                <div class="danger-title">🚨 CRITICAL ZONE: ZERO CHEESE</div>
-                <p style="font-size: 0.85rem; color: #b91c1c; font-weight: 600;">Cheese is banned with a passion! Throw-up level hazard! 🚫🧀❌</p>
+            <!-- EVIL BUTTON SECTION -->
+            <div class="card" style="text-align: center; background: rgba(254, 226, 226, 0.9); border: 2px dashed #ef4444;">
+                <p style="font-weight: 800; color: #dc2626; margin-bottom: 8px; font-size: 0.9rem;">⚠️ WARNING: DO NOT TOUCH BELOW ⚠️</p>
+                <button class="evil-btn" id="evilBtn" onclick="triggerCheeseNightmare()">DO NOT CLICK 🚫</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Floating Background Generator
-        const emojis = ['🌷', '🌸', '🐱', '🐰', '🧁', '🍩', '🍫', '✨', '🐾'];
+        // Floating BG Logic
+        let currentEmojis = ['🌷', '🌸', '🐱', '🐰', '🧁', '🍩', '🍫', '✨', '🐾', '💄', '🐆'];
         const bgContainer = document.getElementById('floatingBg');
 
-        for (let i = 0; i < 15; i++) {
-            const item = document.createElement('div');
-            item.className = 'bg-item';
-            item.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-            item.style.left = `${Math.random() * 95}%`;
-            item.style.animationDelay = `${Math.random() * 10}s`;
-            item.style.animationDuration = `${8 + Math.random() * 6}s`;
-            bgContainer.appendChild(item);
+        function renderFloatingBg() {
+            bgContainer.innerHTML = '';
+            for (let i = 0; i < 16; i++) {
+                const item = document.createElement('div');
+                item.className = 'bg-item';
+                item.innerText = currentEmojis[Math.floor(Math.random() * currentEmojis.length)];
+                item.style.left = `${Math.random() * 92}%`;
+                item.style.animationDelay = `${Math.random() * 8}s`;
+                item.style.animationDuration = `${7 + Math.random() * 5}s`;
+                bgContainer.appendChild(item);
+            }
+        }
+        renderFloatingBg();
+
+        // Snack Counter
+        const counts = { oreo: 0, cupcake: 0, donut: 0, sushi: 0 };
+        function eatSnack(type) {
+            counts[type]++;
+            document.getElementById(`${type}Count`).innerText = `${counts[type]} Eaten`;
         }
 
-        // Flower Garden Interaction
+        // Glam Glow Up
+        function applyGlam() {
+            const card = document.getElementById('glamCard');
+            card.classList.add('glam-active');
+            alert("✨ Mascara applied! Blush glowing! Fluffy socks activated! 🧦💖");
+            setTimeout(() => card.classList.remove('glam-active'), 3000);
+        }
+
+        // Garden
         function bloomGarden() {
             const display = document.getElementById('gardenDisplay');
-            display.innerHTML = '';
-            const flowers = ['🌷', '🌸', '💐', '🌷', '🌸', '💐', '🌷', '🌸'];
-            flowers.forEach((flower, index) => {
-                const span = document.createElement('span');
-                span.className = 'flower-item';
-                span.innerText = flower;
-                span.style.animationDelay = `${index * 0.1}s`;
-                display.appendChild(span);
-            });
+            display.innerHTML = '🌷 🌸 🌺 🌷 🌸 🌺';
         }
 
-        // Mini-Game Logic
+        // Mini Game Logic
         let gameRunning = false;
         let animationId = null;
         let score = 0;
@@ -375,113 +401,98 @@
         const gameBox = document.getElementById('game-box');
         const gameToggleBtn = document.getElementById('gameToggleBtn');
 
-        let basket = { x: 180, y: 240, width: 60, height: 35 };
+        let basket = { x: 150, y: 220, width: 60, height: 30 };
         let items = [];
 
         function toggleGame() {
             if (!gameRunning) {
-                // Start Game
                 gameRunning = true;
                 gameBox.style.display = 'block';
                 gameToggleBtn.innerText = 'Stop Game 🛑';
-                gameToggleBtn.style.background = 'linear-gradient(135deg, #ef4444, #b91c1c)';
                 score = 0;
                 scoreVal.innerText = score;
                 items = [];
-                resizeGameCanvas();
+                resizeCanvas();
                 runGame();
             } else {
-                // Stop Game
                 gameRunning = false;
                 cancelAnimationFrame(animationId);
                 gameBox.style.display = 'none';
                 gameToggleBtn.innerText = 'Play Game 🕹️';
-                gameToggleBtn.style.background = 'linear-gradient(135deg, #ff7ebb, #f43f5e)';
             }
         }
 
-        function resizeGameCanvas() {
+        function resizeCanvas() {
             canvas.width = gameBox.clientWidth;
             canvas.height = gameBox.clientHeight;
-            basket.y = canvas.height - 40;
+            basket.y = canvas.height - 35;
         }
 
-        window.addEventListener('resize', () => {
-            if (gameRunning) resizeGameCanvas();
-        });
-
-        // Touch & Mouse controls for basket
         function moveBasket(clientX) {
             const rect = canvas.getBoundingClientRect();
-            let touchX = clientX - rect.left;
-            basket.x = touchX - basket.width / 2;
-            if (basket.x < 0) basket.x = 0;
-            if (basket.x > canvas.width - basket.width) basket.x = canvas.width - basket.width;
+            basket.x = (clientX - rect.left) - basket.width / 2;
         }
 
-        canvas.addEventListener('mousemove', (e) => {
-            if (gameRunning) moveBasket(e.clientX);
-        });
-
-        canvas.addEventListener('touchmove', (e) => {
-            if (gameRunning && e.touches.length > 0) {
-                moveBasket(e.touches[0].clientX);
-            }
-        });
-
-        const gameSymbols = ['🧁', '🍩', '🐰', '🐱', '🐛', '🍣', '🍫'];
-
-        function spawnItem() {
-            if (!gameRunning) return;
-            items.push({
-                x: Math.random() * (canvas.width - 30),
-                y: -30,
-                speed: 2 + Math.random() * 2.5,
-                symbol: gameSymbols[Math.floor(Math.random() * gameSymbols.length)],
-                size: 28
-            });
-        }
-
-        setInterval(() => {
-            if (gameRunning) spawnItem();
-        }, 700);
+        canvas.addEventListener('mousemove', (e) => { if (gameRunning) moveBasket(e.clientX); });
+        canvas.addEventListener('touchmove', (e) => { if (gameRunning && e.touches[0]) moveBasket(e.touches[0].clientX); });
 
         function runGame() {
             if (!gameRunning) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Draw Basket (Basket is a cute kitty basket 🧺🐱)
-            ctx.font = '28px sans-serif';
-            ctx.fillText('🧺', basket.x + 10, basket.y + 28);
+            // Draw Basket
+            ctx.font = '26px sans-serif';
+            ctx.fillText('🧺', basket.x, basket.y + 24);
 
-            // Update & Draw Items
+            // Items
+            if (Math.random() < 0.06) {
+                const syms = currentEmojis;
+                items.push({ x: Math.random() * (canvas.width - 25), y: -20, speed: 2 + Math.random() * 2, sym: syms[Math.floor(Math.random() * syms.length)] });
+            }
+
             for (let i = items.length - 1; i >= 0; i--) {
-                let item = items[i];
-                item.y += item.speed;
+                let it = items[i];
+                it.y += it.speed;
+                ctx.fillText(it.sym, it.x, it.y);
 
-                ctx.font = `${item.size}px sans-serif`;
-                ctx.fillText(item.symbol, item.x, item.y);
-
-                // Collision Detection with Basket
-                if (
-                    item.y + item.size >= basket.y &&
-                    item.x + item.size >= basket.x &&
-                    item.x <= basket.x + basket.width &&
-                    item.y <= basket.y + basket.height
-                ) {
-                    score += 1;
+                if (it.y >= basket.y - 10 && it.x >= basket.x - 15 && it.x <= basket.x + basket.width) {
+                    score++;
                     scoreVal.innerText = score;
                     items.splice(i, 1);
-                    continue;
-                }
-
-                // Remove off-screen items
-                if (item.y > canvas.height + 20) {
+                } else if (it.y > canvas.height + 20) {
                     items.splice(i, 1);
                 }
             }
 
             animationId = requestAnimationFrame(runGame);
+        }
+
+        // EVIL CHEESE NIGHTMARE MODE SWITCH
+        let isEvil = false;
+        function triggerCheeseNightmare() {
+            isEvil = !isEvil;
+            const body = document.body;
+            const heroTitle = document.getElementById('heroTitle');
+            const heroSub = document.getElementById('heroSub');
+            const evilBtn = document.getElementById('evilBtn');
+
+            if (isEvil) {
+                body.classList.add('cheese-nightmare');
+                heroTitle.innerText = "🧀 CHEESE NIGHTMARE 🧀";
+                heroSub.innerText = "Waking up at 6 AM • Eating after brushing teeth • Degrading Mode 🤮";
+                evilBtn.innerText = "ESCAPE CHEESE NIGHTMARE 🧼";
+                currentEmojis = ['🧀', '🤮', '⏰', '🪥', '🧀', '🤢', '🧀'];
+                renderFloatingBg();
+                alert("🤮 OH NO!! YOU CLICKED IT!! CHEESE OVERLOAD! EARLY ALARMS ACTIVATED! 🧀⏰🪥");
+            } else {
+                body.classList.remove('cheese-nightmare');
+                heroTitle.innerText = "For My Favorite Person 🌷";
+                heroSub.innerText = "Pink & Teal Dreamland ✨";
+                evilBtn.innerText = "DO NOT CLICK 🚫";
+                currentEmojis = ['🌷', '🌸', '🐱', '🐰', '🧁', '🍩', '🍫', '✨', '🐾', '💄', '🐆'];
+                renderFloatingBg();
+                alert("✨ Safe! Back to the cute Pink & Teal universe! 🌸💖");
+            }
         }
     </script>
 </body>
