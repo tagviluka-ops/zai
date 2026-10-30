@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>For My Favorite Person ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-main: #ff7ebb;
+            --pink-soft: #ffd3e2;
+            --pink-glow: #ffb3d1;
+            --teal-main: #2dd4bf;
+            --teal-soft: #ccfbf1;
+            --teal-deep: #0f766e;
+            --bg-dark: #121824;
+            --card-glass: rgba(255, 255, 255, 0.75);
+            --card-border: rgba(255, 255, 255, 0.8);
+            --text-dark: #2d3748;
+            --text-muted: #64748b;
+            --font-title: 'Fredoka One', cursive;
+            --font-body: 'Nunito', sans-serif;
+            --safe-top: env(safe-area-inset-top, 20px);
+            --safe-bottom: env(safe-area-inset-bottom, 20px);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, #101827 0%, #1a2333 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 0;
+        }
+
+        /* iPhone Frame Simulator for PC / Screen Wrapper */
+        .mobile-container {
+            width: 100%;
+            max-width: 430px; /* iPhone 15/16 Pro Max width */
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            background: linear-gradient(165deg, #a7f3d0 0%, #7dd3fc 25%, #fbcfe8 70%, #f472b6 100%);
+            background-size: 200% 200%;
+            animation: gradientFlow 12s ease infinite;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            padding: calc(var(--safe-top) + 20px) 16px calc(var(--safe-bottom) + 30px) 16px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Animated Background Items */
+        .floating-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .bg-item {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.35;
+            animation: floatUp 10s linear infinite;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.4; }
+            80% { opacity: 0.4; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Content Stack */
+        .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+        }
+
+        /* Header Card */
+        .hero-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid var(--card-border);
+            border-radius: 28px;
+            padding: 24px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-title {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #0f766e 0%, #db2777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #475569;
+        }
+
+        /* Section Cards Placeholder */
+        .card {
+            background: var(--card-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid var(--card-border);
+            border-radius: 24px;
+            padding: 18px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .card-title {
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            color: #0f766e;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Touch Effect for iPhone */
+        .card:active, .interactive-btn:active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
+        }
+
+        /* Particle Trail Canvas */
+        #particle-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 99;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="mobile-container">
+        <!-- Floating items layer -->
+        <div class="floating-bg" id="floatingBg"></div>
+
+        <div class="content">
+            <!-- Hero Header -->
+            <div class="hero-card">
+                <h1 class="hero-title">Welcome to Your World 🌷</h1>
+                <p class="hero-subtitle">Made with love • Pink & Teal Edition ✨</p>
+            </div>
+
+            <!-- Starter Section Card -->
+            <div class="card">
+                <div class="card-title">🌸 Flower Garden</div>
+                <p style="font-size: 0.9rem; color: #475569;">Tulips & Lilies blooming just for you...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Floating Background Generator
+        const emojis = ['🌷', '🌸', '🐱', '🐰', '🧁', '🍩', '🍫', '✨'];
+        const bgContainer = document.getElementById('floatingBg');
+
+        for (let i = 0; i < 15; i++) {
+            const item = document.createElement('div');
+            item.className = 'bg-item';
+            item.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            item.style.left = `${Math.random() * 90}%`;
+            item.style.animationDelay = `${Math.random() * 8}s`;
+            item.style.animationDuration = `${8 + Math.random() * 6}s`;
+            bgContainer.appendChild(item);
+        }
+
+        // Particle Touch/Mouse Sparkles
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 6 + 2;
+                this.speedX = (Math.random() - 0.5) * 3;
+                this.speedY = (Math.random() - 0.5) * 3;
+                this.color = Math.random() > 0.5 ? '#ff7ebb' : '#2dd4bf';
+                this.alpha = 1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.alpha -= 0.03;
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function addParticles(e) {
+            const x = e.touches ? e.touches[0].clientX : e.clientX;
+            const y = e.touches ? e.touches[0].clientY : e.clientY;
+            for (let i = 0; i < 2; i++) {
+                particles.push(new Particle(x, y));
+            }
+        }
+
+        window.addEventListener('mousemove', addParticles);
+        window.addEventListener('touchmove', addParticles);
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, index) => {
+                p.update();
+                p.draw();
+                if (p.alpha <= 0) particles.splice(index, 1);
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    </script>
+</body>
+</html>
