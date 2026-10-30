@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>for you, princess ✨</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    <title>for you ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Plus+Jakarta+Sans:wght@600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-base: #090d16;
-            --gradient-cute: linear-gradient(160deg, #a7f3d0 0%, #38bdf8 25%, #f472b6 70%, #fb7185 100%);
-            --card-glass: rgba(255, 255, 255, 0.88);
+            --bg-base: #060913;
+            --gradient-cute: linear-gradient(160deg, #14b8a6 0%, #0284c7 30%, #ec4899 75%, #f43f5e 100%);
+            --card-glass: rgba(255, 255, 255, 0.9);
             --card-border: rgba(255, 255, 255, 0.95);
-            --card-shadow: 0 16px 36px rgba(244, 114, 182, 0.18);
-            --text-main: #1e293b;
+            --card-shadow: 0 20px 40px rgba(236, 72, 153, 0.22);
+            --text-main: #0f172a;
             --text-sub: #475569;
             --accent-teal: #0d9488;
-            --accent-pink: #ec4899;
+            --accent-pink: #f43f5e;
             --font-title: 'Fredoka', sans-serif;
             --font-body: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* 🧀 CHEESE NIGHTMARE MODE 🧀 */
         body.cheese-nightmare {
-            --gradient-cute: linear-gradient(160deg, #2a0800 0%, #78350f 30%, #b45309 65%, #dc2626 100%);
+            --gradient-cute: linear-gradient(160deg, #1a0300 0%, #78350f 35%, #b45309 70%, #dc2626 100%);
             --card-glass: rgba(254, 243, 199, 0.95);
-            --card-border: rgba(239, 68, 68, 0.8);
-            --card-shadow: 0 20px 40px rgba(185, 28, 28, 0.4);
+            --card-border: rgba(251, 191, 36, 0.9);
+            --card-shadow: 0 20px 40px rgba(180, 83, 9, 0.45);
             --text-main: #451a03;
             --text-sub: #78350f;
             --accent-teal: #b45309;
@@ -38,7 +37,7 @@
             padding: 0;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
         body {
@@ -58,13 +57,13 @@
             min-height: 100vh;
             background: var(--gradient-cute);
             background-size: 200% 200%;
-            animation: gradientAnim 12s ease infinite;
+            animation: gradientAnim 10s ease infinite;
             position: relative;
             padding: 24px 18px 48px 18px;
             display: flex;
             flex-direction: column;
             gap: 18px;
-            box-shadow: 0 0 60px rgba(0,0,0,0.6);
+            box-shadow: 0 0 80px rgba(0,0,0,0.8);
             overflow-y: auto;
         }
 
@@ -86,14 +85,14 @@
             position: absolute;
             font-size: 1.6rem;
             opacity: 0.35;
-            animation: floatParticle 10s linear infinite;
+            animation: floatParticle 9s linear infinite;
         }
 
         @keyframes floatParticle {
-            0% { transform: translateY(105vh) rotate(0deg) scale(0.8); opacity: 0; }
-            20% { opacity: 0.45; }
-            80% { opacity: 0.45; }
-            100% { transform: translateY(-10vh) rotate(360deg) scale(1.1); opacity: 0; }
+            0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.4; }
+            80% { opacity: 0.4; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
         .content {
@@ -105,25 +104,17 @@
             width: 100%;
         }
 
-        /* CARD ANIMATIONS */
+        /* HIGH-END GLASS CARDS */
         .card {
             background: var(--card-glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             border: 2px solid var(--card-border);
             border-radius: 28px;
             padding: 20px;
             box-shadow: var(--card-shadow);
-            animation: gentleFloat 6s ease-in-out infinite alternate;
-        }
-
-        .card:nth-child(even) {
-            animation-delay: -3s;
-        }
-
-        @keyframes gentleFloat {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-6px); }
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .card-title {
@@ -139,171 +130,128 @@
         .card-desc {
             font-size: 0.88rem;
             color: var(--text-sub);
-            line-height: 1.45;
+            line-height: 1.4;
             margin-bottom: 14px;
             font-weight: 600;
         }
 
         .hero-card {
             text-align: center;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 32px;
             padding: 26px 20px;
-            box-shadow: 0 20px 40px rgba(244, 114, 182, 0.25);
-            animation: heroGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes heroGlow {
-            0% { box-shadow: 0 10px 30px rgba(244, 114, 182, 0.2); }
-            100% { box-shadow: 0 20px 45px rgba(45, 212, 191, 0.4); }
+            box-shadow: 0 20px 45px rgba(244, 63, 94, 0.3);
+            border: 2px solid #ffffff;
         }
 
         .hero-title {
             font-family: var(--font-title);
-            font-size: 1.9rem;
+            font-size: 2rem;
             background: linear-gradient(135deg, var(--accent-teal), var(--accent-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 4px;
         }
 
-        /* BUTTON ANIMATIONS */
+        /* BUTTONS */
         .btn-action {
             width: 100%;
             padding: 14px 20px;
             border-radius: 20px;
             border: none;
-            background: linear-gradient(135deg, #f472b6, #ec4899);
+            background: linear-gradient(135deg, #f43f5e, #ec4899);
             color: white;
             font-family: var(--font-title);
-            font-size: 0.95rem;
+            font-size: 1rem;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
+            box-shadow: 0 8px 24px rgba(244, 63, 94, 0.35);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            animation: btnPulse 2.5s infinite;
         }
 
-        @keyframes btnPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
-        }
-
-        .btn-action:active {
-            transform: scale(0.95) !important;
-        }
+        .btn-action:active { transform: scale(0.96); }
 
         .btn-action.teal {
-            background: linear-gradient(135deg, #2dd4bf, #0d9488);
-            box-shadow: 0 8px 20px rgba(13, 148, 136, 0.3);
+            background: linear-gradient(135deg, #14b8a6, #0d9488);
+            box-shadow: 0 8px 24px rgba(13, 148, 136, 0.35);
         }
 
-        .mood-box {
-            background: rgba(255,255,255,0.65);
-            border-radius: 18px;
+        /* POLAROID MEMORY CARD */
+        .polaroid-card {
+            background: #ffffff;
+            border-radius: 20px;
             padding: 14px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: center;
-            font-size: 0.92rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 12px;
-            border: 1px dashed var(--card-border);
-            min-height: 50px;
+            cursor: pointer;
+            border: 2px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .polaroid-frame {
+            width: 100%;
+            height: 140px;
+            background: linear-gradient(135deg, #fbcfe8, #ccfbf1);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
         }
 
-        .treat-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-        .treat-btn {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid var(--card-border);
-            border-radius: 18px;
-            padding: 12px 6px;
-            text-align: center;
-            cursor: pointer;
-            animation: bounceLight 3s infinite alternate;
-        }
-
-        .treat-btn:nth-child(2) { animation-delay: 0.5s; }
-        .treat-btn:nth-child(3) { animation-delay: 1s; }
-        .treat-btn:nth-child(4) { animation-delay: 1.5s; }
-
-        @keyframes bounceLight {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-4px); }
-        }
-
-        .treat-btn:active {
-            transform: scale(1.15) rotate(8deg) !important;
-        }
-
-        .treat-emoji { font-size: 1.5rem; display: block; }
-        .treat-val { font-size: 0.7rem; font-weight: 800; color: var(--accent-teal); margin-top: 4px; display: block; }
-
-        /* SECRET NOTE FOLD ANIMATION */
-        .secret-note-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 16px;
-            text-align: center;
-            cursor: pointer;
-            border: 2px dashed #f472b6;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .secret-note-card.opened {
-            background: #fff1f2;
-            border-style: solid;
-        }
-
-        /* CRAVING SELECTOR STYLES */
+        /* CRAVING CHIPS */
         .craving-chip {
             display: inline-block;
-            background: rgba(255,255,255,0.75);
-            padding: 8px 14px;
+            background: rgba(255,255,255,0.8);
+            padding: 10px 14px;
             border-radius: 16px;
             font-size: 0.82rem;
             font-weight: 700;
             margin: 4px;
             cursor: pointer;
             border: 1px solid var(--card-border);
-            transition: all 0.2s ease;
         }
 
         .craving-chip:active {
-            transform: scale(0.92);
-            background: #f472b6;
+            background: var(--accent-pink);
             color: white;
         }
 
+        /* TREATS */
+        .treat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .treat-btn {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 12px 6px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .treat-btn:active { transform: scale(1.15) rotate(6deg); }
+        .treat-emoji { font-size: 1.5rem; display: block; }
+        .treat-val { font-size: 0.7rem; font-weight: 800; color: var(--accent-teal); margin-top: 4px; display: block; }
+
+        /* MINI GAME FRAME */
         #game-frame {
             display: none;
             position: relative;
             width: 100%;
             height: 260px;
-            background: #0f172a;
+            background: #0b1329;
             border-radius: 22px;
             overflow: hidden;
             margin-top: 12px;
             touch-action: none;
         }
-
         #game-canvas { width: 100%; height: 100%; }
-
         .game-badge {
             position: absolute;
             top: 12px;
             left: 12px;
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(8px);
             color: white;
             font-family: var(--font-title);
@@ -312,7 +260,7 @@
             font-size: 0.9rem;
         }
 
-        /* ULTIMATE FLASHY DO NOT CLICK BUTTON */
+        /* FLASHY EVIL BUTTON */
         .evil-trigger {
             background: linear-gradient(135deg, #ef4444, #991b1b, #f59e0b, #ef4444);
             background-size: 300% 300%;
@@ -343,60 +291,66 @@
         body.cheese-nightmare .evil-trigger {
             background: linear-gradient(135deg, #10b981, #047857);
             border-color: #a7f3d0;
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.9);
+            box-shadow: 0 0 35px rgba(16, 185, 129, 0.9);
             animation: megaFlashy 1s infinite alternate;
         }
 
-        /* CLICK HEART SPARKLE POP */
-        .click-pop {
+        /* TOUCH RIPPLE BURST */
+        .touch-burst {
             position: fixed;
             pointer-events: none;
-            font-size: 1.5rem;
-            animation: popUpFade 0.8s ease-out forwards;
-            z-index: 999;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(244, 63, 94, 0.4);
+            transform: translate(-50%, -50%) scale(1);
+            animation: ripple 0.6s ease-out forwards;
+            z-index: 9999;
         }
 
-        @keyframes popUpFade {
-            0% { transform: translateY(0) scale(0.6); opacity: 1; }
-            100% { transform: translateY(-40px) scale(1.3); opacity: 0; }
+        @keyframes ripple {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(6); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="mobile-container" onclick="spawnClickPop(event)">
+    <div class="mobile-container" onclick="spawnTouchRipple(event)">
         <div class="floating-bg" id="floatingBg"></div>
 
         <div class="content">
-            <!-- Hero -->
+            <!-- Hero Header -->
             <div class="hero-card">
                 <h1 class="hero-title" id="heroTitle">for you, princess 🫶</h1>
-                <p style="font-size:0.9rem; font-weight:700; color:var(--text-sub);" id="heroSub">all your favorite things in one little spot ✨</p>
+                <p style="font-size:0.9rem; font-weight:700; color:var(--text-sub);" id="heroSub">all your favorite things in one place ✨</p>
             </div>
 
-            <!-- Useful Feature 1: Mood Generator -->
+            <!-- Memory Polaroid Deck -->
             <div class="card">
-                <div class="card-title" id="moodTitle">💭 daily mood check</div>
-                <p class="card-desc" id="moodDesc">tap whenever you need a reminder of how gorgeous you are</p>
-                <div class="mood-box" id="moodDisplay">tap the button below, good girl 👇</div>
-                <button class="btn-action teal" onclick="getRandomMood()">give me good vibes ✨</button>
-            </div>
-
-            <!-- NEW FEATURE 2: Secret Note Card -->
-            <div class="card">
-                <div class="card-title" id="secretTitle">💌 secret note</div>
-                <p class="card-desc" id="secretDesc">a tiny envelope just for you. tap to open it!</p>
-                <div class="secret-note-card" id="secretCard" onclick="toggleSecretNote()">
-                    <span id="secretIcon" style="font-size:2rem; display:block; margin-bottom:4px;">✉️</span>
-                    <span id="secretText" style="font-size:0.88rem; font-weight:700; color:var(--text-main);">tap to unfold note...</span>
+                <div class="card-title" id="polaroidTitle">📸 memory deck</div>
+                <p class="card-desc" id="polaroidDesc">tap to flip through your memories</p>
+                <div class="polaroid-card" onclick="nextPolaroid()">
+                    <div class="polaroid-frame" id="photoFrame">🐱</div>
+                    <div style="font-size:0.88rem; font-weight:800; color:var(--text-main);" id="photoCaption">cat appreciation card</div>
                 </div>
             </div>
 
-            <!-- NEW FEATURE 3: Craving Picker -->
+            <!-- Daily Mood Check -->
             <div class="card">
-                <div class="card-title" id="cravingTitle">✨ what are we doing tonight?</div>
+                <div class="card-title" id="moodTitle">💭 daily mood check</div>
+                <p class="card-desc" id="moodDesc">tap whenever you need a reminder</p>
+                <div style="background:rgba(255,255,255,0.65); border-radius:18px; padding:14px; text-align:center; font-size:0.92rem; font-weight:700; margin-bottom:12px; border:1px dashed var(--card-border);" id="moodDisplay">
+                    tap below, good girl 👇
+                </div>
+                <button class="btn-action teal" onclick="getRandomMood()">give me good vibes ✨</button>
+            </div>
+
+            <!-- Craving Picker -->
+            <div class="card">
+                <div class="card-title" id="cravingTitle">✨ tonight's plan</div>
                 <p class="card-desc" id="cravingDesc">pick what sounds best right now, princess:</p>
-                <div id="cravingBox">
+                <div>
                     <span class="craving-chip" onclick="selectCraving('sushi')">🍣 Late Night Sushi</span>
                     <span class="craving-chip" onclick="selectCraving('oreo')">🍦 Oreo Ice Cream Sandwich</span>
                     <span class="craving-chip" onclick="selectCraving('onesie')">🧸 Fluffy Socks & Onesies</span>
@@ -405,10 +359,10 @@
                 <div id="selectedCraving" style="margin-top:10px; font-size:0.85rem; font-weight:800; color:var(--accent-teal); text-align:center;"></div>
             </div>
 
-            <!-- Treats Counter -->
+            <!-- Snack Tracker -->
             <div class="card">
                 <div class="card-title" id="snackTitle">🍰 snack tracker</div>
-                <p class="card-desc" id="snackDesc">tap what you are craving or snacking on right now, princess</p>
+                <p class="card-desc" id="snackDesc">tap what you are craving right now</p>
                 <div class="treat-grid">
                     <div class="treat-btn" onclick="tapTreat('oreo')">
                         <span class="treat-emoji" id="e1">🍦</span>
@@ -432,17 +386,17 @@
             <!-- Flower Garden -->
             <div class="card">
                 <div class="card-title" id="gardenTitle">🌸 pick your flowers</div>
-                <p class="card-desc" id="gardenDesc">tulips are cute, but lilies are honestly way prettier. tap to grow them for you!</p>
+                <p class="card-desc" id="gardenDesc">tulips are cute, but lilies are way prettier. tap to grow them!</p>
                 <div id="flowerGrid" style="display:flex; justify-content:center; gap:8px; min-height:45px; align-items:center; font-size:1.8rem;">
-                    <span style="font-size:0.82rem; color:var(--text-sub);">garden is waiting for you...</span>
+                    <span style="font-size:0.82rem; color:var(--text-sub);">garden is waiting...</span>
                 </div>
                 <button class="btn-action teal" style="margin-top:12px;" onclick="bloomGarden()">grow flowers 🌷</button>
             </div>
 
-            <!-- Mini Game -->
+            <!-- Catch Mini Game -->
             <div class="card">
                 <div class="card-title" id="gameCardTitle">🎮 catch the stuff</div>
-                <p class="card-desc" id="gameCardDesc">catch the falling bunnies, cats, and cute little bugs in your basket, good girl!</p>
+                <p class="card-desc" id="gameCardDesc">catch the falling bunnies, cats, and bugs in your basket, good girl!</p>
                 <button id="gameToggleBtn" class="btn-action" onclick="toggleMiniGame()">play game 🕹️</button>
 
                 <div id="game-frame">
@@ -451,10 +405,10 @@
                 </div>
             </div>
 
-            <!-- Love Unloved -->
+            <!-- Loving the Unloved -->
             <div class="card" style="background: linear-gradient(135deg, rgba(204,251,241,0.9), rgba(255,211,226,0.9));">
                 <div class="card-title" id="unlovedTitle">🐆 loving the unloved 🐛</div>
-                <p class="card-desc" style="margin-bottom:0;" id="unlovedDesc">giving all the love to the weird and cool animals—from big cats and cheetahs to sweet little millipedes, just like you taught me! 💛</p>
+                <p class="card-desc" style="margin-bottom:0;" id="unlovedDesc">loving all the cool animals—from big cats and cheetahs to sweet little millipedes! 💛</p>
             </div>
 
             <!-- FLASHY EVIL BUTTON -->
@@ -486,43 +440,46 @@
         }
         renderParticles();
 
-        // Click Sparkle Pop
-        function spawnClickPop(e) {
-            const pop = document.createElement('div');
-            pop.className = 'click-pop';
-            pop.innerText = isCheese ? '🤮' : '💖';
-            pop.style.left = `${e.clientX - 10}px`;
-            pop.style.top = `${e.clientY - 10}px`;
-            document.body.appendChild(pop);
-            setTimeout(() => pop.remove(), 800);
+        function spawnTouchRipple(e) {
+            const burst = document.createElement('div');
+            burst.className = 'touch-burst';
+            burst.style.left = `${e.clientX}px`;
+            burst.style.top = `${e.clientY}px`;
+            if (isCheese) burst.style.background = 'rgba(239, 68, 68, 0.6)';
+            document.body.appendChild(burst);
+            setTimeout(() => burst.remove(), 600);
         }
 
-        // Secret Note Toggle
-        let noteOpen = false;
-        function toggleSecretNote() {
-            noteOpen = !noteOpen;
-            const card = document.getElementById('secretCard');
-            const icon = document.getElementById('secretIcon');
-            const text = document.getElementById('secretText');
+        // Polaroid Deck
+        const polaroidsCute = [
+            { icon: '🐱', cap: 'cats and fluffy bunnies' },
+            { icon: '🌷', cap: 'lilies are way prettier than tulips' },
+            { icon: '🐛', cap: 'loving the unloved millipedes' },
+            { icon: '🍦', cap: 'oreo ice cream sandwich time' },
+            { icon: '🐆', cap: 'majestic big cats & cheetahs' }
+        ];
 
-            if (noteOpen) {
-                card.classList.add('opened');
-                icon.innerText = '💌';
-                text.innerText = isCheese ? "ERROR: CHEESE IN THE ENVELOPE 🤮" : "i made this entire space just to see you smile. you are my favorite person ✨";
-            } else {
-                card.classList.remove('opened');
-                icon.innerText = '✉️';
-                text.innerText = "tap to unfold note...";
-            }
+        const polaroidsCheese = [
+            { icon: '🧀', cap: 'MOLDY CHEDDAR CHEESE OVERLOAD' },
+            { icon: '⏰', cap: 'FORCED 5:00 AM MORNING ALARM' },
+            { icon: '🪥', cap: 'EATING RIGHT AFTER BRUSHING TEETH' }
+        ];
+
+        let photoIndex = 0;
+        function nextPolaroid() {
+            const list = isCheese ? polaroidsCheese : polaroidsCute;
+            photoIndex = (photoIndex + 1) % list.length;
+            document.getElementById('photoFrame').innerText = list[photoIndex].icon;
+            document.getElementById('photoCaption').innerText = list[photoIndex].cap;
         }
 
-        // Craving Selection
+        // Craving Picker
         function selectCraving(type) {
             const display = document.getElementById('selectedCraving');
             if (isCheese) {
-                display.innerText = "EWW NO! ONLY MOLDY CHEESE IS ON THE MENU 🧀🤮";
+                display.innerText = "NO! ONLY MOLDY CHEESE SERVED HERE 🧀🤮";
             } else {
-                display.innerText = "locked in! " + type + " night is officially planned 💖";
+                display.innerText = type + " night is officially locked in 💖";
             }
         }
 
@@ -530,40 +487,38 @@
         const cuteMoods = [
             "you are my favorite distraction, princess",
             "take a sip of water right now, good girl 💧",
-            "you look gorgeous today, even if you won't admit it",
+            "you look gorgeous today",
             "staying up late talking to you is my favorite part of the day",
-            "you deserve a whole batch of fresh cupcakes right now",
+            "you deserve fresh cupcakes right now",
             "zero cheese allowed near you ever, mommy's orders"
         ];
 
         const cheeseMoods = [
-            "EWW CHEESE SMELL IS EVERYWHERE",
+            "EWW CHEESE SMELL EVERYWHERE",
             "IT IS 5:00 AM AND YOU HAVE TO WAKE UP NOW",
-            "YOU JUST BRUSHED YOUR TEETH AND NOW YOU ARE EATING CHEESE",
-            "SOMEONE SAID SOMETHING SUPER UNKIND AND DEGRADING",
-            "RUN AWAY FROM THE MOLDY CHEESE QUICKLY, PRINCESS"
+            "YOU BRUSHED YOUR TEETH AND NOW YOU HAVE TO EAT CHEESE",
+            "SOMEONE SAID SOMETHING UNKIND AND DEGRADING",
+            "RUN AWAY FROM THE CHEESE QUICKLY, PRINCESS"
         ];
 
         function getRandomMood() {
             const list = isCheese ? cheeseMoods : cuteMoods;
-            const chosen = list[Math.floor(Math.random() * list.length)];
-            document.getElementById('moodDisplay').innerText = chosen;
+            document.getElementById('moodDisplay').innerText = list[Math.floor(Math.random() * list.length)];
         }
 
-        // Treats
+        // Treats Counter
         const treats = { oreo: 0, cake: 0, donut: 0, sushi: 0 };
         function tapTreat(type) {
             treats[type]++;
             document.getElementById(`${type}Val`).innerText = `${treats[type]} eaten`;
         }
 
-        // Bloom
+        // Garden
         function bloomGarden() {
-            const grid = document.getElementById('flowerGrid');
-            grid.innerHTML = isCheese ? '🧀 🤮 🧀 🤮 🧀 🤮' : '🌷 🌸 💐 🌷 🌸 💐';
+            document.getElementById('flowerGrid').innerHTML = isCheese ? '🧀 🤮 🧀 🤮 🧀 🤮' : '🌷 🌸 💐 🌷 🌸 💐';
         }
 
-        // Balanced Mini Game Logic
+        // Mini Game Logic
         let gameRunning = false;
         let animId = null;
         let score = 0;
@@ -614,7 +569,6 @@
             if (!gameRunning) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Draw Basket
             ctx.font = '28px sans-serif';
             ctx.fillText('🧺', basket.x + 12, basket.y + 26);
 
@@ -644,7 +598,7 @@
             animId = requestAnimationFrame(runGame);
         }
 
-        // CHEESE & DISLIKES NIGHTMARE MODE
+        // CHEESE MODE TOGGLE
         let isCheese = false;
         function toggleCheeseMode() {
             isCheese = !isCheese;
@@ -660,17 +614,18 @@
                 document.getElementById('evilBtn').innerText = "GET ME OUT OF HERE NOW, MOMMY 🧼✨";
                 document.getElementById('warningTag').innerText = "🚨 EVERYTHING YOU HATE IS HAPPENING, PRINCESS 🚨";
                 
+                document.getElementById('polaroidTitle').innerText = "🤮 nightmare gallery";
+                document.getElementById('polaroidDesc').innerText = "tap to see gross cheese memories";
+                nextPolaroid();
+
                 document.getElementById('moodTitle').innerText = "⏰ forced morning alarm";
                 document.getElementById('moodDesc').innerText = "you have to wake up at 5:00 AM right now, sleep is cancelled";
-                
-                document.getElementById('secretTitle').innerText = "🤮 cursed envelope";
-                document.getElementById('secretDesc').innerText = "there is a piece of smelly cheese inside this note!";
 
                 document.getElementById('cravingTitle').innerText = "🧀 menu of horrors";
                 document.getElementById('cravingDesc').innerText = "only moldy cheese and early wake ups available!";
 
                 document.getElementById('snackTitle').innerText = "🪥 cursed snack bar";
-                document.getElementById('snackDesc').innerText = "eating strong cheddar cheese right after brushing your teeth, good girl";
+                document.getElementById('snackDesc').innerText = "eating strong cheddar cheese right after brushing your teeth";
                 
                 document.getElementById('gardenTitle').innerText = "🥀 dead wilted plants";
                 document.getElementById('gardenDesc').innerText = "no cute flowers allowed, only moldy cheese chunks here";
@@ -694,30 +649,31 @@
                 renderParticles();
 
                 document.getElementById('heroTitle').innerText = "for you, princess 🫶";
-                document.getElementById('heroSub').innerText = "all your favorite things in one little spot ✨";
+                document.getElementById('heroSub').innerText = "all your favorite things in one place ✨";
                 document.getElementById('evilBtn').innerText = "✨ DO NOT CLICK 🚫 ✨";
                 document.getElementById('warningTag').innerText = "⚠️ DANGER: DO NOT PRESS THIS BUTTON ⚠️";
 
-                document.getElementById('moodTitle').innerText = "💭 daily mood check";
-                document.getElementById('moodDesc').innerText = "tap whenever you need a reminder of how gorgeous you are";
-                
-                document.getElementById('secretTitle').innerText = "💌 secret note";
-                document.getElementById('secretDesc').innerText = "a tiny envelope just for you. tap to open it!";
+                document.getElementById('polaroidTitle').innerText = "📸 memory deck";
+                document.getElementById('polaroidDesc').innerText = "tap to flip through your memories";
+                nextPolaroid();
 
-                document.getElementById('cravingTitle').innerText = "✨ what are we doing tonight?";
+                document.getElementById('moodTitle').innerText = "💭 daily mood check";
+                document.getElementById('moodDesc').innerText = "tap whenever you need a reminder";
+                
+                document.getElementById('cravingTitle').innerText = "✨ tonight's plan";
                 document.getElementById('cravingDesc').innerText = "pick what sounds best right now, princess:";
 
                 document.getElementById('snackTitle').innerText = "🍰 snack tracker";
-                document.getElementById('snackDesc').innerText = "tap what you are craving or snacking on right now, princess";
+                document.getElementById('snackDesc').innerText = "tap what you are craving right now";
                 
                 document.getElementById('gardenTitle').innerText = "🌸 pick your flowers";
-                document.getElementById('gardenDesc').innerText = "tulips are cute, but lilies are honestly way prettier. tap to grow them for you!";
+                document.getElementById('gardenDesc').innerText = "tulips are cute, but lilies are way prettier. tap to grow them!";
 
                 document.getElementById('unlovedTitle').innerText = "🐆 loving the unloved 🐛";
-                document.getElementById('unlovedDesc').innerText = "giving all the love to the weird and cool animals—from big cats and cheetahs to sweet little millipedes, just like you taught me! 💛";
+                document.getElementById('unlovedDesc').innerText = "loving all the cool animals—from big cats and cheetahs to sweet little millipedes! 💛";
 
                 document.getElementById('gameCardTitle').innerText = "🎮 catch the stuff";
-                document.getElementById('gameCardDesc').innerText = "catch the falling bunnies, cats, and cute little bugs in your basket, good girl!";
+                document.getElementById('gameCardDesc').innerText = "catch the falling bunnies, cats, and bugs in your basket, good girl!";
                 document.getElementById('gameToggleBtn').innerText = gameRunning ? "stop game 🛑" : "play game 🕹️";
 
                 document.getElementById('e1').innerText = '🍦';
