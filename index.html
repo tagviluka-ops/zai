@@ -104,7 +104,6 @@
             width: 100%;
         }
 
-        /* HIGH-END GLASS CARDS */
         .card {
             background: var(--card-glass);
             backdrop-filter: blur(24px);
@@ -151,7 +150,6 @@
             margin-bottom: 4px;
         }
 
-        /* STREAK COUNTER BADGE */
         .streak-badge {
             background: linear-gradient(135deg, #ff416c, #ff4b2b);
             color: white;
@@ -171,41 +169,6 @@
             text-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        /* iMESSAGE TEXT BUBBLE STYLE */
-        .imessage-box {
-            background: #e9e9eb;
-            border-radius: 20px;
-            padding: 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .bubble-received {
-            background: #ffffff;
-            color: #000;
-            padding: 10px 14px;
-            border-radius: 18px 18px 18px 4px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            max-width: 85%;
-            align-self: flex-start;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-        }
-
-        .bubble-sent {
-            background: #007aff;
-            color: #ffffff;
-            padding: 10px 14px;
-            border-radius: 18px 18px 4px 18px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            max-width: 85%;
-            align-self: flex-end;
-            box-shadow: 0 2px 6px rgba(0,122,255,0.2);
-        }
-
-        /* BUTTONS */
         .btn-action {
             width: 100%;
             padding: 14px 20px;
@@ -230,7 +193,6 @@
             box-shadow: 0 8px 24px rgba(13, 148, 136, 0.35);
         }
 
-        /* POLAROID MEMORY CARD */
         .polaroid-card {
             background: #ffffff;
             border-radius: 20px;
@@ -253,7 +215,6 @@
             margin-bottom: 10px;
         }
 
-        /* CRAVING CHIPS */
         .craving-chip {
             display: inline-block;
             background: rgba(255,255,255,0.85);
@@ -271,7 +232,6 @@
             color: white;
         }
 
-        /* TREATS */
         .treat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
         .treat-btn {
             background: rgba(255, 255, 255, 0.85);
@@ -285,7 +245,6 @@
         .treat-emoji { font-size: 1.5rem; display: block; }
         .treat-val { font-size: 0.7rem; font-weight: 800; color: var(--accent-teal); margin-top: 4px; display: block; }
 
-        /* MINI GAME FRAME */
         #game-frame {
             display: none;
             position: relative;
@@ -329,7 +288,7 @@
 
         @keyframes megaFlashy {
             0% { transform: scale(1) rotate(-1deg); box-shadow: 0 0 20px rgba(239, 68, 68, 0.7); }
-            50% { transform: scale(1.06) rotate(1.5deg); box-shadow: 0 0 45px rgba(251, 191, 36, 1); }
+            50% { transform: scale(1.06) rotate(1.5deg); box-shadow: 0 0 35px rgba(251, 191, 36, 1); }
             100% { transform: scale(1) rotate(-1deg); box-shadow: 0 0 20px rgba(239, 68, 68, 0.7); }
         }
 
@@ -346,7 +305,64 @@
             animation: megaFlashy 1s infinite alternate;
         }
 
-        /* TOUCH RIPPLE BURST */
+        /* TRANSITION ANIMATIONS FOR CHEESE MODE */
+        #cheeseCover {
+            position: fixed;
+            inset: 0;
+            background: #f59e0b;
+            z-index: 99999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            pointer-events: none;
+        }
+
+        .cheese-slide-in {
+            animation: cheeseSlide 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+
+        @keyframes cheeseSlide {
+            0% { transform: translateY(-100%); }
+            50% { transform: translateY(0%); }
+            100% { transform: translateY(100%); }
+        }
+
+        /* TRASH CAN ANIMATION WHEN ESCAPING CHEESE MODE */
+        #trashOverlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            pointer-events: none;
+        }
+
+        .trash-container {
+            position: relative;
+            font-size: 5rem;
+            text-align: center;
+        }
+
+        .cheese-throw {
+            position: absolute;
+            top: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+            animation: throwInTrash 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
+        }
+
+        @keyframes throwInTrash {
+            0% { top: -150px; transform: translateX(-50%) rotate(0deg) scale(1); opacity: 1; }
+            70% { top: 20px; transform: translateX(-50%) rotate(360deg) scale(0.8); opacity: 1; }
+            100% { top: 40px; transform: translateX(-50%) rotate(720deg) scale(0); opacity: 0; }
+        }
+
         .touch-burst {
             position: fixed;
             pointer-events: none;
@@ -367,6 +383,21 @@
 </head>
 <body>
 
+    <!-- Fullscreen Cheese Slide Overlay -->
+    <div id="cheeseCover">
+        <div style="font-size:8rem;">🧀</div>
+        <div style="font-family:var(--font-title); color:white; font-size:1.8rem;">CHEESE OVERLOAD!!</div>
+    </div>
+
+    <!-- Trash Can Escape Overlay -->
+    <div id="trashOverlay">
+        <div class="trash-container">
+            <div class="cheese-throw">🧀</div>
+            🗑️
+        </div>
+        <div style="font-family:var(--font-title); color:white; font-size:1.5rem; margin-top:20px;">TRASHING THE CHEESE... 🧼</div>
+    </div>
+
     <div class="mobile-container" onclick="spawnTouchRipple(event)">
         <div class="floating-bg" id="floatingBg"></div>
 
@@ -377,7 +408,7 @@
                 <p style="font-size:0.9rem; font-weight:700; color:var(--text-sub);" id="heroSub">all your favorite things in one place ✨</p>
             </div>
 
-            <!-- NEW FEATURE 1: Custom Goon Streak Tracker -->
+            <!-- Streak Tracker -->
             <div class="card">
                 <div class="card-title" id="streakTitle">🔥 goon streak tracker</div>
                 <p class="card-desc" id="streakDesc">our current streak together. keep it going, princess!</p>
@@ -387,27 +418,6 @@
                     <span style="font-size:0.85rem; font-weight:700;" id="streakSub">DAYS STREAK ON FIRE! ⚡</span>
                 </div>
                 <button class="btn-action" onclick="incrementStreak()">check in today 🔥</button>
-            </div>
-
-            <!-- NEW FEATURE 2: iMessage Cute Text Generator -->
-            <div class="card">
-                <div class="card-title" id="msgTitle">💬 text me card</div>
-                <p class="card-desc" id="msgDesc">tap to send an instant cute text response</p>
-                <div class="imessage-box">
-                    <div class="bubble-received" id="bReceived">me: you're looking gorgeous today, princess 💖</div>
-                    <div class="bubble-sent" id="bSent">her: I know, good girl status confirmed ✨</div>
-                </div>
-                <button class="btn-action teal" style="margin-top:10px;" onclick="cycleMessage()">send reply 📲</button>
-            </div>
-
-            <!-- NEW FEATURE 3: What Should We Do Wheel / Decision Maker -->
-            <div class="card">
-                <div class="card-title" id="decideTitle">🎯 what should we do?</div>
-                <p class="card-desc" id="decideDesc">can't decide what to do? tap to spin the randomizer!</p>
-                <div style="background:rgba(255,255,255,0.7); border-radius:18px; padding:14px; text-align:center; font-size:0.95rem; font-weight:800; color:var(--accent-teal); margin-bottom:10px; border:1px dashed var(--card-border);" id="decideDisplay">
-                    tap below to pick an activity ✨
-                </div>
-                <button class="btn-action" onclick="pickActivity()">spin decision 🎲</button>
             </div>
 
             <!-- Memory Polaroid Deck -->
@@ -544,43 +554,6 @@
             streakCount++;
             document.getElementById('streakNum').innerText = streakCount;
             alert("🔥 Check-in complete! Streak is now " + streakCount + " days! Keep it up, good girl!");
-        }
-
-        // iMessage Bubble Cycler
-        const cuteMessages = [
-            { r: "me: you're looking gorgeous today, princess 💖", s: "her: I know, good girl status confirmed ✨" },
-            { r: "me: late night faceTime later? 🌙", s: "her: only if we watch anime together 🍿" },
-            { r: "me: zero cheese allowed near you ever 🚫", s: "her: best decision ever made 🧁" }
-        ];
-        let msgIndex = 0;
-        function cycleMessage() {
-            if (isCheese) {
-                document.getElementById('bReceived').innerText = "me: CHEESE HAZARD ALERT!! 🧀";
-                document.getElementById('bSent').innerText = "her: WAKING UP AT 5:00 AM IS CANCELLED 🤮";
-                return;
-            }
-            msgIndex = (msgIndex + 1) % cuteMessages.length;
-            document.getElementById('bReceived').innerText = cuteMessages[msgIndex].r;
-            document.getElementById('bSent').innerText = cuteMessages[msgIndex].s;
-        }
-
-        // Decision Maker
-        const activitiesCute = [
-            " Late Night FaceTime Call 📞",
-            "🍿 Watch an Anime Marathon 🍿",
-            "🍣 Get Oreo Ice Cream & Sushi 🍦",
-            "🧸 Wear Fluffy Socks & Onesies 🧦",
-            "🎮 Play Catch the Goodies Game 🕹️"
-        ];
-        const activitiesCheese = [
-            "🧀 Eat Cheddar Cheese 🤮",
-            "⏰ Wake Up at 5:00 AM 😴",
-            "🪥 Eat Citrus Right After Brushing Teeth 🪥"
-        ];
-        function pickActivity() {
-            const list = isCheese ? activitiesCheese : activitiesCute;
-            const chosen = list[Math.floor(Math.random() * list.length)];
-            document.getElementById('decideDisplay').innerText = "Result: " + chosen;
         }
 
         // Polaroid Deck
@@ -731,116 +704,119 @@
             animId = requestAnimationFrame(runGame);
         }
 
-        // CHEESE MODE TOGGLE
+        // CHEESE MODE ANIMATION TRANSITIONS
         let isCheese = false;
         function toggleCheeseMode() {
             isCheese = !isCheese;
             const body = document.body;
 
             if (isCheese) {
-                body.classList.add('cheese-nightmare');
-                activeEmojis = CHEESE_EMOJIS;
-                renderParticles();
+                // Play Cheese Slide-In Transition
+                const cover = document.getElementById('cheeseCover');
+                cover.style.display = 'flex';
+                cover.classList.add('cheese-slide-in');
 
-                document.getElementById('heroTitle').innerText = "💀 nightmare mode 💀";
-                document.getElementById('heroSub').innerText = "cheese everywhere • waking up early • brushing teeth curse";
-                document.getElementById('evilBtn').innerText = "GET ME OUT OF HERE NOW, MOMMY 🧼✨";
-                document.getElementById('warningTag').innerText = "🚨 EVERYTHING YOU HATE IS HAPPENING, PRINCESS 🚨";
-                
-                document.getElementById('streakTitle').innerText = "🤮 cancelled streak";
-                document.getElementById('streakDesc').innerText = "cheese overload cancelled your streak!";
-                document.getElementById('streakNum').innerText = "0";
-                document.getElementById('streakSub').innerText = "MOLDY CHEESE HAZARD ⚡";
+                setTimeout(() => {
+                    body.classList.add('cheese-nightmare');
+                    activeEmojis = CHEESE_EMOJIS;
+                    renderParticles();
 
-                document.getElementById('msgTitle').innerText = "🤮 cursed text bubble";
-                document.getElementById('msgDesc').innerText = "5:00 AM alarms incoming!";
-                cycleMessage();
+                    document.getElementById('heroTitle').innerText = "💀 nightmare mode 💀";
+                    document.getElementById('heroSub').innerText = "cheese everywhere • waking up early • brushing teeth curse";
+                    document.getElementById('evilBtn').innerText = "GET ME OUT OF HERE NOW, MOMMY 🧼✨";
+                    document.getElementById('warningTag').innerText = "🚨 EVERYTHING YOU HATE IS HAPPENING, PRINCESS 🚨";
+                    
+                    document.getElementById('streakTitle').innerText = "🤮 cancelled streak";
+                    document.getElementById('streakDesc').innerText = "cheese overload cancelled your streak!";
+                    document.getElementById('streakNum').innerText = "0";
+                    document.getElementById('streakSub').innerText = "MOLDY CHEESE HAZARD ⚡";
 
-                document.getElementById('decideTitle').innerText = "🧀 cheese wheel";
-                document.getElementById('decideDesc').innerText = "only gross options available!";
-                pickActivity();
+                    document.getElementById('polaroidTitle').innerText = "🤮 nightmare gallery";
+                    document.getElementById('polaroidDesc').innerText = "tap to see gross cheese memories";
+                    nextPolaroid();
 
-                document.getElementById('polaroidTitle').innerText = "🤮 nightmare gallery";
-                document.getElementById('polaroidDesc').innerText = "tap to see gross cheese memories";
-                nextPolaroid();
+                    document.getElementById('moodTitle').innerText = "⏰ forced morning alarm";
+                    document.getElementById('moodDesc').innerText = "you have to wake up at 5:00 AM right now, sleep is cancelled";
 
-                document.getElementById('moodTitle').innerText = "⏰ forced morning alarm";
-                document.getElementById('moodDesc').innerText = "you have to wake up at 5:00 AM right now, sleep is cancelled";
+                    document.getElementById('cravingTitle').innerText = "🧀 menu of horrors";
+                    document.getElementById('cravingDesc').innerText = "only moldy cheese and early wake ups available!";
 
-                document.getElementById('cravingTitle').innerText = "🧀 menu of horrors";
-                document.getElementById('cravingDesc').innerText = "only moldy cheese and early wake ups available!";
+                    document.getElementById('snackTitle').innerText = "🪥 cursed snack bar";
+                    document.getElementById('snackDesc').innerText = "eating strong cheddar cheese right after brushing your teeth";
+                    
+                    document.getElementById('gardenTitle').innerText = "🥀 dead wilted plants";
+                    document.getElementById('gardenDesc').innerText = "no cute flowers allowed, only moldy cheese chunks here";
 
-                document.getElementById('snackTitle').innerText = "🪥 cursed snack bar";
-                document.getElementById('snackDesc').innerText = "eating strong cheddar cheese right after brushing your teeth";
-                
-                document.getElementById('gardenTitle').innerText = "🥀 dead wilted plants";
-                document.getElementById('gardenDesc').innerText = "no cute flowers allowed, only moldy cheese chunks here";
+                    document.getElementById('unlovedTitle').innerText = "🤬 toxic degrading zone";
+                    document.getElementById('unlovedDesc').innerText = "someone is being degrading and you are way too sensitive for this";
 
-                document.getElementById('unlovedTitle').innerText = "🤬 toxic degrading zone";
-                document.getElementById('unlovedDesc').innerText = "someone is being degrading and you are way too sensitive for this";
+                    document.getElementById('gameCardTitle').innerText = "🧀 cheese nightmare game";
+                    document.getElementById('gameCardDesc').innerText = "catch the gross falling cheese and early alarms in your basket!";
+                    document.getElementById('gameToggleBtn').innerText = gameRunning ? "stop nightmare 🛑" : "play nightmare 🕹️";
 
-                document.getElementById('gameCardTitle').innerText = "🧀 cheese nightmare game";
-                document.getElementById('gameCardDesc').innerText = "catch the gross falling cheese and early alarms in your basket!";
-                document.getElementById('gameToggleBtn').innerText = gameRunning ? "stop nightmare 🛑" : "play nightmare 🕹️";
+                    document.getElementById('e1').innerText = '🧀';
+                    document.getElementById('e2').innerText = '🤮';
+                    document.getElementById('e3').innerText = '⏰';
+                    document.getElementById('e4').innerText = '🪥';
+                }, 400);
 
-                document.getElementById('e1').innerText = '🧀';
-                document.getElementById('e2').innerText = '🤮';
-                document.getElementById('e3').innerText = '⏰';
-                document.getElementById('e4').innerText = '🪥';
+                setTimeout(() => {
+                    cover.style.display = 'none';
+                    cover.classList.remove('cheese-slide-in');
+                }, 800);
 
-                alert("Oh no princess! Cheese explosion and 5:00 AM alarms! Hit that green escape button quickly!");
             } else {
-                body.classList.remove('cheese-nightmare');
-                activeEmojis = CUTE_EMOJIS;
-                renderParticles();
+                // Play Trash Can Throw Animation
+                const trashOverlay = document.getElementById('trashOverlay');
+                trashOverlay.style.display = 'flex';
 
-                document.getElementById('heroTitle').innerText = "for you, princess 🫶";
-                document.getElementById('heroSub').innerText = "all your favorite things in one place ✨";
-                document.getElementById('evilBtn').innerText = "✨ DO NOT CLICK 🚫 ✨";
-                document.getElementById('warningTag').innerText = "⚠️ DANGER: DO NOT PRESS THIS BUTTON ⚠️";
+                setTimeout(() => {
+                    body.classList.remove('cheese-nightmare');
+                    activeEmojis = CUTE_EMOJIS;
+                    renderParticles();
 
-                document.getElementById('streakTitle').innerText = "🔥 goon streak tracker";
-                document.getElementById('streakDesc').innerText = "our current streak together. keep it going, princess!";
-                document.getElementById('streakNum').innerText = streakCount;
-                document.getElementById('streakSub').innerText = "DAYS STREAK ON FIRE! ⚡";
+                    document.getElementById('heroTitle').innerText = "for you, princess 🫶";
+                    document.getElementById('heroSub').innerText = "all your favorite things in one place ✨";
+                    document.getElementById('evilBtn').innerText = "✨ DO NOT CLICK 🚫 ✨";
+                    document.getElementById('warningTag').innerText = "⚠️ DANGER: DO NOT PRESS THIS BUTTON ⚠️";
 
-                document.getElementById('msgTitle').innerText = "💬 text me card";
-                document.getElementById('msgDesc').innerText = "tap to send an instant cute text response";
-                cycleMessage();
+                    document.getElementById('streakTitle').innerText = "🔥 goon streak tracker";
+                    document.getElementById('streakDesc').innerText = "our current streak together. keep it going, princess!";
+                    document.getElementById('streakNum').innerText = streakCount;
+                    document.getElementById('streakSub').innerText = "DAYS STREAK ON FIRE! ⚡";
 
-                document.getElementById('decideTitle').innerText = "🎯 what should we do?";
-                document.getElementById('decideDesc').innerText = "can't decide what to do? tap to spin the randomizer!";
-                document.getElementById('decideDisplay').innerText = "tap below to pick an activity ✨";
+                    document.getElementById('polaroidTitle').innerText = "📸 memory deck";
+                    document.getElementById('polaroidDesc').innerText = "tap to flip through memories";
+                    nextPolaroid();
 
-                document.getElementById('polaroidTitle').innerText = "📸 memory deck";
-                document.getElementById('polaroidDesc').innerText = "tap to flip through memories";
-                nextPolaroid();
+                    document.getElementById('moodTitle').innerText = "💭 daily mood check";
+                    document.getElementById('moodDesc').innerText = "tap whenever you need a reminder";
+                    
+                    document.getElementById('cravingTitle').innerText = "✨ tonight's plan";
+                    document.getElementById('cravingDesc').innerText = "pick what sounds best right now, princess:";
 
-                document.getElementById('moodTitle').innerText = "💭 daily mood check";
-                document.getElementById('moodDesc').innerText = "tap whenever you need a reminder";
-                
-                document.getElementById('cravingTitle').innerText = "✨ tonight's plan";
-                document.getElementById('cravingDesc').innerText = "pick what sounds best right now, princess:";
+                    document.getElementById('snackTitle').innerText = "🍰 snack tracker";
+                    document.getElementById('snackDesc').innerText = "tap what you are craving right now";
+                    
+                    document.getElementById('gardenTitle').innerText = "🌸 pick your flowers";
+                    document.getElementById('gardenDesc').innerText = "tulips are cute, but lilies are way prettier. tap to grow them!";
 
-                document.getElementById('snackTitle').innerText = "🍰 snack tracker";
-                document.getElementById('snackDesc').innerText = "tap what you are craving right now";
-                
-                document.getElementById('gardenTitle').innerText = "🌸 pick your flowers";
-                document.getElementById('gardenDesc').innerText = "tulips are cute, but lilies are way prettier. tap to grow them!";
+                    document.getElementById('unlovedTitle').innerText = "🐆 loving the unloved 🐛";
+                    document.getElementById('unlovedDesc').innerText = "loving all the cool animals—from big cats and cheetahs to sweet little millipedes! 💛";
 
-                document.getElementById('unlovedTitle').innerText = "🐆 loving the unloved 🐛";
-                document.getElementById('unlovedDesc').innerText = "loving all the cool animals—from big cats and cheetahs to sweet little millipedes! 💛";
+                    document.getElementById('gameCardTitle').innerText = "🎮 catch the stuff";
+                    document.getElementById('gameCardDesc').innerText = "catch the falling bunnies, cats, and bugs in your basket, good girl!";
+                    document.getElementById('gameToggleBtn').innerText = gameRunning ? "stop game 🛑" : "play game 🕹️";
 
-                document.getElementById('gameCardTitle').innerText = "🎮 catch the stuff";
-                document.getElementById('gameCardDesc').innerText = "catch the falling bunnies, cats, and bugs in your basket, good girl!";
-                document.getElementById('gameToggleBtn').innerText = gameRunning ? "stop game 🛑" : "play game 🕹️";
+                    document.getElementById('e1').innerText = '🍦';
+                    document.getElementById('e2').innerText = '🧁';
+                    document.getElementById('e3').innerText = '🍩';
+                    document.getElementById('e4').innerText = '🍣';
+                }, 1000);
 
-                document.getElementById('e1').innerText = '🍦';
-                document.getElementById('e2').innerText = '🧁';
-                document.getElementById('e3').innerText = '🍩';
-                document.getElementById('e4').innerText = '🍣';
-
-                alert("Phew! Back to our safe pink and teal aesthetic zone, good girl!");
+                setTimeout(() => {
+                    trashOverlay.style.display = 'none';
+                }, 1400);
             }
         }
     </script>
