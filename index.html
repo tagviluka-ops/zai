@@ -305,7 +305,7 @@
             animation: megaFlashy 1s infinite alternate;
         }
 
-        /* 🧀 30x BETTER MOLTEN CHEESE INVASION (2 SECONDS) */
+        /* 🧀 WALKING CHEESE WITH FEET (2 SECONDS) */
         #cheeseCover {
             position: fixed;
             inset: 0;
@@ -325,24 +325,57 @@
 
         @keyframes meltIn {
             0% { clip-path: circle(0% at 50% 50%); opacity: 0; }
-            40% { clip-path: circle(150% at 50% 50%); opacity: 1; transform: scale(1.05); }
-            70% { clip-path: circle(150% at 50% 50%); opacity: 1; transform: scale(1); }
+            30% { clip-path: circle(150% at 50% 50%); opacity: 1; }
+            75% { clip-path: circle(150% at 50% 50%); opacity: 1; }
             100% { clip-path: circle(0% at 50% 50%); opacity: 0; }
         }
 
-        .big-cheese-spin {
-            font-size: 9rem;
-            animation: spinCheese 2s ease-in-out infinite;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+        .walking-cheese-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: walkAcross 2s ease-in-out forwards;
         }
 
-        @keyframes spinCheese {
-            0% { transform: scale(0.4) rotate(0deg); }
-            50% { transform: scale(1.2) rotate(360deg); }
-            100% { transform: scale(0.9) rotate(720deg); }
+        .walking-cheese {
+            font-size: 7rem;
+            animation: bounceCheese 0.3s ease infinite alternate;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
         }
 
-        /* 🗑️ PERFECT TRASH CAN DROP ANIMATION WITH CORRECT LAYERING (2 SECONDS) */
+        .cheese-feet {
+            font-size: 2.2rem;
+            margin-top: -15px;
+            animation: stepFeet 0.15s ease infinite alternate;
+        }
+
+        @keyframes walkAcross {
+            0% { transform: translateX(-120vw) rotate(-10deg); }
+            50% { transform: translateX(0vw) rotate(0deg) scale(1.1); }
+            100% { transform: translateX(120vw) rotate(10deg); }
+        }
+
+        @keyframes bounceCheese {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-12px); }
+        }
+
+        @keyframes stepFeet {
+            0% { transform: scaleX(0.8) rotate(-5deg); }
+            100% { transform: scaleX(1.1) rotate(5deg); }
+        }
+
+        .transition-title {
+            font-family: var(--font-title);
+            color: white;
+            font-size: 1.8rem;
+            margin-top: 20px;
+            text-align: center;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            letter-spacing: 0.5px;
+        }
+
+        /* 🗑️ PERFECT TRASH CAN DROP ANIMATION WITH CORRECT LAYERING & MATCHED FONT (2 SECONDS) */
         #trashOverlay {
             position: fixed;
             inset: 0;
@@ -365,7 +398,6 @@
             align-items: center;
         }
 
-        /* Trash Can sits on top (z-index: 2) so cheese drops BEHIND the rim */
         .trash-can-emoji {
             font-size: 7rem;
             position: absolute;
@@ -373,7 +405,6 @@
             z-index: 2;
         }
 
-        /* Falling Cheese sits behind trash can body (z-index: 1) */
         .cheese-falling-item {
             position: absolute;
             font-size: 3.5rem;
@@ -409,19 +440,22 @@
 </head>
 <body>
 
-    <!-- Melting Cheese Fullscreen Cover (2 Seconds) -->
+    <!-- Walking Cheese Invasion Cover (2 Seconds) -->
     <div id="cheeseCover">
-        <div class="big-cheese-spin">🧀</div>
-        <div style="font-family:var(--font-title); color:white; font-size:2rem; margin-top:10px; text-shadow:0 4px 10px rgba(0,0,0,0.3);">CHEESE INVASION!! 🧀⚡</div>
+        <div class="walking-cheese-container">
+            <div class="walking-cheese">🧀</div>
+            <div class="cheese-feet">👟👟</div>
+        </div>
+        <div class="transition-title">CHEESE INVASION!! 🧀⚡</div>
     </div>
 
-    <!-- Trash Can Escape Overlay with Proper Layering (2 Seconds) -->
+    <!-- Trash Can Escape Overlay with Matched Font (2 Seconds) -->
     <div id="trashOverlay">
         <div class="trash-stage">
             <div class="cheese-falling-item">🧀</div>
             <div class="trash-can-emoji">🗑️</div>
         </div>
-        <div style="font-family:var(--font-title); color:white; font-size:1.6rem; margin-top:20px;">TRASHING THE CHEESE... 🧼✨</div>
+        <div class="transition-title">TRASHING THE CHEESE... 🧼✨</div>
     </div>
 
     <div class="mobile-container" onclick="spawnTouchRipple(event)">
