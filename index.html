@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>For My Favorite Person ✨</title>
+    <title>for u ✨</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -20,7 +20,7 @@
             --font-body: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* 🧀 ULTIMATE NIGHTMARE MODE 🧀 */
+        /* 🧀 CHEESE NIGHTMARE MODE 🧀 */
         body.cheese-nightmare {
             --gradient-cute: linear-gradient(160deg, #2a0800 0%, #78350f 30%, #b45309 65%, #dc2626 100%);
             --card-glass: rgba(254, 243, 199, 0.95);
@@ -117,7 +117,7 @@
 
         .card-title {
             font-family: var(--font-title);
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             color: var(--accent-teal);
             display: flex;
             align-items: center;
@@ -126,7 +126,7 @@
         }
 
         .card-desc {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--text-sub);
             line-height: 1.45;
             margin-bottom: 14px;
@@ -143,11 +143,11 @@
 
         .hero-title {
             font-family: var(--font-title);
-            font-size: 2rem;
+            font-size: 1.9rem;
             background: linear-gradient(135deg, var(--accent-teal), var(--accent-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .btn-action {
@@ -158,7 +158,7 @@
             background: linear-gradient(135deg, #f472b6, #ec4899);
             color: white;
             font-family: var(--font-title);
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
             display: flex;
@@ -176,14 +176,21 @@
             box-shadow: 0 8px 20px rgba(13, 148, 136, 0.3);
         }
 
-        /* Music Bar UI */
-        .music-controls {
+        /* Mood Generator Box */
+        .mood-box {
+            background: rgba(255,255,255,0.65);
+            border-radius: 18px;
+            padding: 14px;
+            text-align: center;
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            border: 1px dashed var(--card-border);
+            min-height: 50px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            background: rgba(255,255,255,0.6);
-            border-radius: 18px;
-            padding: 10px 14px;
+            justify-content: center;
         }
 
         .treat-grid {
@@ -205,14 +212,14 @@
             transform: scale(1.15) rotate(8deg);
         }
 
-        .treat-emoji { font-size: 1.6rem; display: block; }
-        .treat-val { font-size: 0.72rem; font-weight: 800; color: var(--accent-teal); margin-top: 4px; display: block; }
+        .treat-emoji { font-size: 1.5rem; display: block; }
+        .treat-val { font-size: 0.7rem; font-weight: 800; color: var(--accent-teal); margin-top: 4px; display: block; }
 
         #game-frame {
             display: none;
             position: relative;
             width: 100%;
-            height: 270px;
+            height: 260px;
             background: #0f172a;
             border-radius: 22px;
             overflow: hidden;
@@ -232,7 +239,7 @@
             font-family: var(--font-title);
             padding: 6px 14px;
             border-radius: 12px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         /* EVIL BUTTON */
@@ -243,7 +250,7 @@
             padding: 16px;
             border-radius: 24px;
             font-family: var(--font-title);
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             width: 100%;
             cursor: pointer;
             box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
@@ -271,82 +278,77 @@
         <div class="content">
             <!-- Hero -->
             <div class="hero-card">
-                <h1 class="hero-title" id="heroTitle">For My Favorite Person 🌷</h1>
-                <p style="font-size:0.92rem; font-weight:700; color:var(--text-sub);" id="heroSub">Teal & Pink Paradise ✨</p>
+                <h1 class="hero-title" id="heroTitle">just for you 🫶</h1>
+                <p style="font-size:0.9rem; font-weight:700; color:var(--text-sub);" id="heroSub">all your favorite things in one little spot ✨</p>
             </div>
 
-            <!-- Useful Music/Ambience Player -->
+            <!-- Useful Feature: Cute Mood / Compliment Generator -->
             <div class="card">
-                <div class="card-title" id="musicTitle">🎵 Cozy Vibe Player</div>
-                <p class="card-desc" id="musicDesc">Tap to play relaxing background lofi music while exploring!</p>
-                <div class="music-controls">
-                    <span id="songName" style="font-size:0.85rem; font-weight:800; color:var(--accent-teal);">🎶 Lofi Vibes: Muted</span>
-                    <button class="btn-action teal" style="width:auto; padding:8px 16px; font-size:0.85rem;" onclick="toggleAudio()" id="audioBtn">Play 🔊</button>
-                </div>
+                <div class="card-title" id="moodTitle">💭 daily mood check</div>
+                <p class="card-desc" id="moodDesc">tap whenever you need a little reminder of how cool you are :p</p>
+                <div class="mood-box" id="moodDisplay">tap the button below for a random thought! 👇</div>
+                <button class="btn-action teal" onclick="getRandomMood()">give me good vibes ✨</button>
             </div>
 
-            <!-- Sweet Treats -->
+            <!-- Treats Counter -->
             <div class="card">
-                <div class="card-title">🧁 Sweet Tooth Station</div>
-                <p class="card-desc" id="snackDesc">Tap snacks to eat them up!</p>
+                <div class="card-title" id="snackTitle">🍰 snack tracker</div>
+                <p class="card-desc" id="snackDesc">tap what you're craving or snacking on right now!</p>
                 <div class="treat-grid">
                     <div class="treat-btn" onclick="tapTreat('oreo')">
                         <span class="treat-emoji" id="e1">🍦</span>
-                        <span class="treat-val" id="oreoVal">0 Oreos</span>
+                        <span class="treat-val" id="oreoVal">0 oreos</span>
                     </div>
                     <div class="treat-btn" onclick="tapTreat('cake')">
                         <span class="treat-emoji" id="e2">🧁</span>
-                        <span class="treat-val" id="cakeVal">0 Cakes</span>
+                        <span class="treat-val" id="cakeVal">0 cakes</span>
                     </div>
                     <div class="treat-btn" onclick="tapTreat('donut')">
                         <span class="treat-emoji" id="e3">🍩</span>
-                        <span class="treat-val" id="donutVal">0 Donuts</span>
+                        <span class="treat-val" id="donutVal">0 donuts</span>
                     </div>
                     <div class="treat-btn" onclick="tapTreat('sushi')">
                         <span class="treat-emoji" id="e4">🍣</span>
-                        <span class="treat-val" id="sushiVal">0 Sushi</span>
+                        <span class="treat-val" id="sushiVal">0 sushi</span>
                     </div>
                 </div>
             </div>
 
             <!-- Flower Garden -->
             <div class="card">
-                <div class="card-title">🌸 Lily & Tulip Garden</div>
-                <p class="card-desc">Tulips are sweet, but Lilies are the prettiest! Tap to bloom.</p>
-                <div id="flowerGrid" style="display:flex; justify-content:center; gap:8px; min-height:40px; align-items:center; font-size:1.8rem;">
-                    <span style="font-size:0.85rem; color:var(--text-sub);">Garden is sleeping...</span>
+                <div class="card-title" id="gardenTitle">🌸 pick your flowers</div>
+                <p class="card-desc" id="gardenDesc">tulips are cute, but lilies are honestly way prettier. tap to grow them!</p>
+                <div id="flowerGrid" style="display:flex; justify-content:center; gap:8px; min-height:45px; align-items:center; font-size:1.8rem;">
+                    <span style="font-size:0.82rem; color:var(--text-sub);">garden is empty rn...</span>
                 </div>
-                <button class="btn-action teal" style="margin-top:12px;" onclick="bloomGarden()">Bloom Flowers 🌷</button>
+                <button class="btn-action teal" style="margin-top:12px;" onclick="bloomGarden()">grow flowers 🌷</button>
             </div>
 
             <!-- Mini Game -->
             <div class="card">
-                <div class="card-title">🎮 Goodie Collector</div>
-                <p class="card-desc">Catch cupcakes, bunnies, and millipedes!</p>
-                <button id="gameToggleBtn" class="btn-action" onclick="toggleMiniGame()">Play Game 🕹️</button>
+                <div class="card-title" id="gameCardTitle">🎮 catch the stuff</div>
+                <p class="card-desc" id="gameCardDesc">catch the falling bunnies, cats, and cute little bugs in your basket!</p>
+                <button id="gameToggleBtn" class="btn-action" onclick="toggleMiniGame()">play game 🕹️</button>
 
                 <div id="game-frame">
-                    <div class="game-badge">Score: <span id="gameScore">0</span></div>
+                    <div class="game-badge">score: <span id="gameScore">0</span></div>
                     <canvas id="game-canvas"></canvas>
                 </div>
             </div>
 
             <!-- Love Unloved -->
             <div class="card" style="background: linear-gradient(135deg, rgba(204,251,241,0.9), rgba(255,211,226,0.9));">
-                <div class="card-title">🐆 Loving the Unloved 🐛</div>
-                <p class="card-desc" style="margin-bottom:0;" id="loveDesc">Loving all the unloved creatures—from big cats & cheetahs to cute millipedes! 💛</p>
+                <div class="card-title" id="unlovedTitle">🐆 loving the unloved 🐛</div>
+                <p class="card-desc" style="margin-bottom:0;" id="unlovedDesc">giving all the love to the weird & cool animals—from big cats and cheetahs to sweet little millipedes! 💛</p>
             </div>
 
             <!-- EVIL BUTTON -->
             <div class="card" style="text-align: center; background: rgba(254, 226, 226, 0.95); border: 2px dashed #ef4444;">
-                <p style="font-weight: 800; color: #dc2626; margin-bottom: 10px; font-size: 0.88rem;" id="warningTag">⚠️ WARNING: DO NOT PRESS BELOW ⚠️</p>
+                <p style="font-weight: 800; color: #dc2626; margin-bottom: 10px; font-size: 0.85rem;" id="warningTag">⚠️ do NOT press this button ⚠️</p>
                 <button class="evil-trigger" id="evilBtn" onclick="toggleCheeseMode()">DO NOT CLICK 🚫</button>
             </div>
         </div>
     </div>
-
-    <!-- Audio Element -->
-    <audio id="bgAudio" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio>
 
     <script>
         const CUTE_EMOJIS = ['🌷', '🌸', '🐱', '🐰', '🧁', '🍩', '🍫', '✨', '🐾', '💄', '🐆', '🐛'];
@@ -357,7 +359,7 @@
 
         function renderParticles() {
             bgContainer.innerHTML = '';
-            for (let i = 0; i < 18; i++) {
+            for (let i = 0; i < 16; i++) {
                 const p = document.createElement('div');
                 p.className = 'bg-particle';
                 p.innerText = activeEmojis[Math.floor(Math.random() * activeEmojis.length)];
@@ -369,36 +371,41 @@
         }
         renderParticles();
 
-        // Audio Toggle
-        let isAudioPlaying = false;
-        const bgAudio = document.getElementById('bgAudio');
-        function toggleAudio() {
-            const btn = document.getElementById('audioBtn');
-            const name = document.getElementById('songName');
-            if (!isAudioPlaying) {
-                bgAudio.play().catch(()=>{});
-                isAudioPlaying = true;
-                btn.innerText = 'Pause ⏸️';
-                name.innerText = '🎶 Playing Lofi Chill Beats';
-            } else {
-                bgAudio.pause();
-                isAudioPlaying = false;
-                btn.innerText = 'Play 🔊';
-                name.innerText = '🎶 Lofi Vibes: Muted';
-            }
+        // Mood Notes
+        const cuteMoods = [
+            "you're literally doing amazing today fr 💅",
+            "reminder: take a sip of water right now bestie 💧",
+            "your music taste is elite and nobody can tell you otherwise 🎧",
+            "staying up late is a lifestyle and it's valid 🌙",
+            "you deserve a whole batch of fresh cupcakes rn 🧁",
+            "zero cheese allowed near you ever 🚫🧀"
+        ];
+
+        const cheeseMoods = [
+            "⚠️ EWWWW CHEESE SMELL EVERYWHERE 🤮",
+            "⏰ IT IS 5:00 AM AND YOU HAVE TO WAKE UP NOW!!",
+            "🪥 YOU JUST BRUSHED YOUR TEETH AND NOW YOU'RE EATING ORANGE JUICE & CHEESE",
+            "🤬 SOMEONE SAID SOMETHING SUPER DEGRADING OOF",
+            "🚨 RUN AWAY FROM THE MOLDY CHEESE QUICKLY 🧀🏃‍♀️"
+        ];
+
+        function getRandomMood() {
+            const list = isCheese ? cheeseMoods : cuteMoods;
+            const chosen = list[Math.floor(Math.random() * list.length)];
+            document.getElementById('moodDisplay').innerText = chosen;
         }
 
         // Treats
         const treats = { oreo: 0, cake: 0, donut: 0, sushi: 0 };
         function tapTreat(type) {
             treats[type]++;
-            document.getElementById(`${type}Val`).innerText = `${treats[type]} Eaten`;
+            document.getElementById(`${type}Val`).innerText = `${treats[type]} eaten`;
         }
 
         // Bloom
         function bloomGarden() {
             const grid = document.getElementById('flowerGrid');
-            grid.innerHTML = '🌷 🌸 💐 🌷 🌸 💐';
+            grid.innerHTML = isCheese ? '🧀 🤮 🧀 🤮 🧀 🤮' : '🌷 🌸 💐 🌷 🌸 💐';
         }
 
         // Mini Game Logic
@@ -418,7 +425,7 @@
             if (!gameRunning) {
                 gameRunning = true;
                 gameFrame.style.display = 'block';
-                gameToggleBtn.innerText = 'Stop Game 🛑';
+                gameToggleBtn.innerText = 'stop game 🛑';
                 score = 0;
                 gameScore.innerText = score;
                 items = [];
@@ -428,7 +435,7 @@
                 gameRunning = false;
                 cancelAnimationFrame(animId);
                 gameFrame.style.display = 'none';
-                gameToggleBtn.innerText = 'Play Game 🕹️';
+                gameToggleBtn.innerText = 'play game 🕹️';
             }
         }
 
@@ -479,7 +486,7 @@
             animId = requestAnimationFrame(runGame);
         }
 
-        // IMMERSIVE CHEESE & DISLIKES MODE
+        // CHEESE & DISLIKES NIGHTMARE MODE
         let isCheese = false;
         function toggleCheeseMode() {
             isCheese = !isCheese;
@@ -490,41 +497,57 @@
                 activeEmojis = CHEESE_EMOJIS;
                 renderParticles();
 
-                document.getElementById('heroTitle').innerText = "🧀 DISLIKES NIGHTMARE 🧀";
-                document.getElementById('heroSub').innerText = "CHEESE WITH A PASSION • 5 AM ALARM • BRUSHED TEETH HAZARD 🤮";
-                document.getElementById('evilBtn').innerText = "ESCAPE NIGHTMARE NOW! 🧼💖";
-                document.getElementById('warningTag').innerText = "🚨 MAXIMUM DISLIKES HAZARD ACTIVE 🚨";
-                document.getElementById('musicTitle').innerText = "⏰ FORCED EARLY ALARM";
-                document.getElementById('musicDesc').innerText = "SLEEP EARLY & WAKE UP AT 5:00 AM MODE ACTIVATED! 😴⚡";
-                document.getElementById('snackDesc').innerText = "EATING RIGHT AFTER BRUSHING TEETH! MINTY ORANGE JUICE & CHEESE 🧀🪥🤮";
-                document.getElementById('loveDesc').innerText = "CRUEL DEGRADING REMARKS ACTIVATED! (TOO SENSITIVE FOR THIS!! 😭❌)";
+                document.getElementById('heroTitle').innerText = "💀 nightmare mode 💀";
+                document.getElementById('heroSub').innerText = "cheese everywhere • waking up early • brushing teeth curse 🤮";
+                document.getElementById('evilBtn').innerText = "GET ME OUT OF HERE NOW 🧼✨";
+                document.getElementById('warningTag').innerText = "🚨 EVERYTHING YOU HATE IS HAPPENING 🚨";
+                
+                document.getElementById('moodTitle').innerText = "⏰ forced morning alarm";
+                document.getElementById('moodDesc').innerText = "you have to wake up at 5:00 AM right now!! sleep is cancelled 😭";
+                
+                document.getElementById('snackTitle').innerText = "🪥 cursed snack bar";
+                document.getElementById('snackDesc').innerText = "eating strong cheddar cheese right after brushing your teeth! 🤮";
+                
+                document.getElementById('gardenTitle').innerText = "🥀 dead wilted plants";
+                document.getElementById('gardenDesc').innerText = "no cute flowers allowed, only moldy cheese chunks here :/";
+
+                document.getElementById('unlovedTitle').innerText = "🤬 toxic degrading zone";
+                document.getElementById('unlovedDesc').innerText = "someone is being super mean and degrading and you're too sensitive for this! 😭💔";
 
                 document.getElementById('e1').innerText = '🧀';
                 document.getElementById('e2').innerText = '🤮';
                 document.getElementById('e3').innerText = '⏰';
                 document.getElementById('e4').innerText = '🪥';
 
-                alert("🤮 CRITICAL ERROR! CHEESE OVERLOAD! 5:00 AM ALARMS! EATING AFTER BRUSHING TEETH! HIT ESCAPE IMMEDIATELY!!");
+                alert("🤢 OH NO YUCK!! CHEESE EXPLOSION & 5 AM ALARMS! HIT THAT GREEN ESCAPE BUTTON QUICK!!");
             } else {
                 body.classList.remove('cheese-nightmare');
                 activeEmojis = CUTE_EMOJIS;
                 renderParticles();
 
-                document.getElementById('heroTitle').innerText = "For My Favorite Person 🌷";
-                document.getElementById('heroSub').innerText = "Teal & Pink Paradise ✨";
+                document.getElementById('heroTitle').innerText = "just for you 🫶";
+                document.getElementById('heroSub').innerText = "all your favorite things in one little spot ✨";
                 document.getElementById('evilBtn').innerText = "DO NOT CLICK 🚫";
-                document.getElementById('warningTag').innerText = "⚠️ WARNING: DO NOT PRESS BELOW ⚠️";
-                document.getElementById('musicTitle').innerText = "🎵 Cozy Vibe Player";
-                document.getElementById('musicDesc').innerText = "Tap to play relaxing background lofi music while exploring!";
-                document.getElementById('snackDesc').innerText = "Tap snacks to eat them up!";
-                document.getElementById('loveDesc').innerText = "Loving all the unloved creatures—from big cats & cheetahs to cute millipedes! 💛";
+                document.getElementById('warningTag').innerText = "⚠️ do NOT press this button ⚠️";
+
+                document.getElementById('moodTitle').innerText = "💭 daily mood check";
+                document.getElementById('moodDesc').innerText = "tap whenever you need a little reminder of how cool you are :p";
+                
+                document.getElementById('snackTitle').innerText = "🍰 snack tracker";
+                document.getElementById('snackDesc').innerText = "tap what you're craving or snacking on right now!";
+                
+                document.getElementById('gardenTitle').innerText = "🌸 pick your flowers";
+                document.getElementById('gardenDesc').innerText = "tulips are cute, but lilies are honestly way prettier. tap to grow them!";
+
+                document.getElementById('unlovedTitle').innerText = "🐆 loving the unloved 🐛";
+                document.getElementById('unlovedDesc').innerText = "giving all the love to the weird & cool animals—from big cats and cheetahs to sweet little millipedes! 💛";
 
                 document.getElementById('e1').innerText = '🍦';
                 document.getElementById('e2').innerText = '🧁';
                 document.getElementById('e3').innerText = '🍩';
                 document.getElementById('e4').innerText = '🍣';
 
-                alert("✨ Safe! Back to the cute Pink & Teal universe! 🌸💖");
+                alert("✨ phew! back to the safe pink & teal aesthetic zone 🌸💖");
             }
         }
     </script>
