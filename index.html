@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-base: #0a0f1d;
-            --gradient-cute: linear-gradient(160deg, #99f6e4 0%, #a5f3fc 20%, #fbcfe8 65%, #f472b6 100%);
-            --card-glass: rgba(255, 255, 255, 0.82);
+            --bg-base: #090d16;
+            --gradient-cute: linear-gradient(160deg, #a7f3d0 0%, #38bdf8 25%, #f472b6 70%, #fb7185 100%);
+            --card-glass: rgba(255, 255, 255, 0.88);
             --card-border: rgba(255, 255, 255, 0.95);
-            --card-shadow: 0 16px 32px rgba(244, 114, 182, 0.12);
+            --card-shadow: 0 16px 36px rgba(244, 114, 182, 0.18);
             --text-main: #1e293b;
             --text-sub: #475569;
             --accent-teal: #0d9488;
@@ -20,12 +20,12 @@
             --font-body: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* 🧀 IMMERSIVE CHEESE NIGHTMARE MODE 🧀 */
+        /* 🧀 ULTIMATE NIGHTMARE MODE 🧀 */
         body.cheese-nightmare {
-            --gradient-cute: linear-gradient(160deg, #451a03 0%, #78350f 30%, #b45309 65%, #f59e0b 100%);
-            --card-glass: rgba(254, 243, 199, 0.92);
-            --card-border: rgba(251, 191, 36, 0.8);
-            --card-shadow: 0 16px 32px rgba(180, 83, 9, 0.3);
+            --gradient-cute: linear-gradient(160deg, #2a0800 0%, #78350f 30%, #b45309 65%, #dc2626 100%);
+            --card-glass: rgba(254, 243, 199, 0.95);
+            --card-border: rgba(239, 68, 68, 0.8);
+            --card-shadow: 0 20px 40px rgba(185, 28, 28, 0.4);
             --text-main: #451a03;
             --text-sub: #78350f;
             --accent-teal: #b45309;
@@ -38,7 +38,7 @@
             padding: 0;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
-            transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
@@ -52,7 +52,6 @@
             overflow-x: hidden;
         }
 
-        /* Mobile Container Frame */
         .mobile-container {
             width: 100%;
             max-width: 430px;
@@ -65,7 +64,7 @@
             display: flex;
             flex-direction: column;
             gap: 18px;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            box-shadow: 0 0 60px rgba(0,0,0,0.6);
             overflow-y: auto;
         }
 
@@ -75,7 +74,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating Background Particles */
         .floating-bg {
             position: absolute;
             inset: 0;
@@ -86,19 +84,18 @@
 
         .bg-particle {
             position: absolute;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             opacity: 0.35;
             animation: floatParticle 10s linear infinite;
         }
 
         @keyframes floatParticle {
             0% { transform: translateY(105vh) rotate(0deg) scale(0.8); opacity: 0; }
-            20% { opacity: 0.4; }
-            80% { opacity: 0.4; }
+            20% { opacity: 0.45; }
+            80% { opacity: 0.45; }
             100% { transform: translateY(-10vh) rotate(360deg) scale(1.1); opacity: 0; }
         }
 
-        /* Content Stack */
         .content {
             position: relative;
             z-index: 10;
@@ -108,7 +105,6 @@
             width: 100%;
         }
 
-        /* Glassmorphism Cards */
         .card {
             background: var(--card-glass);
             backdrop-filter: blur(20px);
@@ -119,13 +115,6 @@
             box-shadow: var(--card-shadow);
         }
 
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
         .card-title {
             font-family: var(--font-title);
             font-size: 1.3rem;
@@ -133,6 +122,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            margin-bottom: 6px;
         }
 
         .card-desc {
@@ -140,16 +130,15 @@
             color: var(--text-sub);
             line-height: 1.45;
             margin-bottom: 14px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
-        /* Header Hero */
         .hero-card {
             text-align: center;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.92);
             border-radius: 32px;
             padding: 26px 20px;
-            box-shadow: 0 20px 40px rgba(244, 114, 182, 0.2);
+            box-shadow: 0 20px 40px rgba(244, 114, 182, 0.25);
         }
 
         .hero-title {
@@ -161,13 +150,6 @@
             margin-bottom: 6px;
         }
 
-        .hero-sub {
-            font-size: 0.92rem;
-            font-weight: 700;
-            color: var(--text-sub);
-        }
-
-        /* Interactive Action Buttons */
         .btn-action {
             width: 100%;
             padding: 14px 20px;
@@ -183,7 +165,6 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
 
         .btn-action:active {
@@ -195,26 +176,16 @@
             box-shadow: 0 8px 20px rgba(13, 148, 136, 0.3);
         }
 
-        /* Garden Flowers */
-        .flower-grid {
+        /* Music Bar UI */
+        .music-controls {
             display: flex;
-            justify-content: center;
-            gap: 10px;
-            min-height: 50px;
             align-items: center;
-            font-size: 2rem;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.6);
+            border-radius: 18px;
+            padding: 10px 14px;
         }
 
-        .flower-pop {
-            animation: popFlower 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-
-        @keyframes popFlower {
-            0% { transform: scale(0) rotate(-20deg); opacity: 0; }
-            100% { transform: scale(1) rotate(0deg); opacity: 1; }
-        }
-
-        /* Snack Quick Bar */
         .treat-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -222,33 +193,21 @@
         }
 
         .treat-btn {
-            background: rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.8);
             border: 1px solid var(--card-border);
             border-radius: 18px;
             padding: 12px 6px;
             text-align: center;
             cursor: pointer;
-            transition: transform 0.2s ease;
         }
 
         .treat-btn:active {
             transform: scale(1.15) rotate(8deg);
         }
 
-        .treat-emoji {
-            font-size: 1.6rem;
-            display: block;
-        }
+        .treat-emoji { font-size: 1.6rem; display: block; }
+        .treat-val { font-size: 0.72rem; font-weight: 800; color: var(--accent-teal); margin-top: 4px; display: block; }
 
-        .treat-val {
-            font-size: 0.75rem;
-            font-weight: 800;
-            color: var(--accent-teal);
-            margin-top: 4px;
-            display: block;
-        }
-
-        /* Mini-Game Frame */
         #game-frame {
             display: none;
             position: relative;
@@ -261,16 +220,13 @@
             touch-action: none;
         }
 
-        #game-canvas {
-            width: 100%;
-            height: 100%;
-        }
+        #game-canvas { width: 100%; height: 100%; }
 
         .game-badge {
             position: absolute;
             top: 12px;
             left: 12px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(8px);
             color: white;
             font-family: var(--font-title);
@@ -296,13 +252,13 @@
 
         @keyframes evilPulse {
             0% { transform: scale(1); box-shadow: 0 0 12px rgba(239, 68, 68, 0.4); }
-            100% { transform: scale(1.03); box-shadow: 0 0 28px rgba(239, 68, 68, 0.85); }
+            100% { transform: scale(1.04); box-shadow: 0 0 30px rgba(239, 68, 68, 0.9); }
         }
 
         body.cheese-nightmare .evil-trigger {
             background: linear-gradient(135deg, #10b981, #047857);
             border-color: #a7f3d0;
-            box-shadow: 0 0 25px rgba(16, 185, 129, 0.6);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.8);
             animation: none;
         }
     </style>
@@ -310,20 +266,29 @@
 <body>
 
     <div class="mobile-container">
-        <!-- Floating Particles -->
         <div class="floating-bg" id="floatingBg"></div>
 
         <div class="content">
-            <!-- Hero Banner -->
+            <!-- Hero -->
             <div class="hero-card">
                 <h1 class="hero-title" id="heroTitle">For My Favorite Person 🌷</h1>
-                <p class="hero-sub" id="heroSub">Teal & Pink Paradise ✨</p>
+                <p style="font-size:0.92rem; font-weight:700; color:var(--text-sub);" id="heroSub">Teal & Pink Paradise ✨</p>
             </div>
 
-            <!-- Snack Counter -->
+            <!-- Useful Music/Ambience Player -->
             <div class="card">
-                <div class="card-title">🧁 Sweet Tooth Bar</div>
-                <p class="card-desc" id="snackDesc">Tap treats to eat them up!</p>
+                <div class="card-title" id="musicTitle">🎵 Cozy Vibe Player</div>
+                <p class="card-desc" id="musicDesc">Tap to play relaxing background lofi music while exploring!</p>
+                <div class="music-controls">
+                    <span id="songName" style="font-size:0.85rem; font-weight:800; color:var(--accent-teal);">🎶 Lofi Vibes: Muted</span>
+                    <button class="btn-action teal" style="width:auto; padding:8px 16px; font-size:0.85rem;" onclick="toggleAudio()" id="audioBtn">Play 🔊</button>
+                </div>
+            </div>
+
+            <!-- Sweet Treats -->
+            <div class="card">
+                <div class="card-title">🧁 Sweet Tooth Station</div>
+                <p class="card-desc" id="snackDesc">Tap snacks to eat them up!</p>
                 <div class="treat-grid">
                     <div class="treat-btn" onclick="tapTreat('oreo')">
                         <span class="treat-emoji" id="e1">🍦</span>
@@ -344,24 +309,17 @@
                 </div>
             </div>
 
-            <!-- Glam & Cozy -->
-            <div class="card">
-                <div class="card-title">💄 Glam & Cozy Station</div>
-                <p class="card-desc" id="glamDesc">Put on fluffy socks, cozy onesies, mascara & blush! ✨</p>
-                <button class="btn-action" onclick="activateGlam()">Activate Glam Mode 💅</button>
-            </div>
-
             <!-- Flower Garden -->
             <div class="card">
-                <div class="card-title" id="gardenTitle">🌸 Lily & Tulip Garden</div>
+                <div class="card-title">🌸 Lily & Tulip Garden</div>
                 <p class="card-desc">Tulips are sweet, but Lilies are the prettiest! Tap to bloom.</p>
-                <div class="flower-grid" id="flowerGrid">
+                <div id="flowerGrid" style="display:flex; justify-content:center; gap:8px; min-height:40px; align-items:center; font-size:1.8rem;">
                     <span style="font-size:0.85rem; color:var(--text-sub);">Garden is sleeping...</span>
                 </div>
                 <button class="btn-action teal" style="margin-top:12px;" onclick="bloomGarden()">Bloom Flowers 🌷</button>
             </div>
 
-            <!-- Catch Mini Game -->
+            <!-- Mini Game -->
             <div class="card">
                 <div class="card-title">🎮 Goodie Collector</div>
                 <p class="card-desc">Catch cupcakes, bunnies, and millipedes!</p>
@@ -379,18 +337,20 @@
                 <p class="card-desc" style="margin-bottom:0;" id="loveDesc">Loving all the unloved creatures—from big cats & cheetahs to cute millipedes! 💛</p>
             </div>
 
-            <!-- EVIL BUTTON TRIGGER -->
-            <div class="card" style="text-align: center; background: rgba(254, 226, 226, 0.9); border: 2px dashed #ef4444;">
+            <!-- EVIL BUTTON -->
+            <div class="card" style="text-align: center; background: rgba(254, 226, 226, 0.95); border: 2px dashed #ef4444;">
                 <p style="font-weight: 800; color: #dc2626; margin-bottom: 10px; font-size: 0.88rem;" id="warningTag">⚠️ WARNING: DO NOT PRESS BELOW ⚠️</p>
                 <button class="evil-trigger" id="evilBtn" onclick="toggleCheeseMode()">DO NOT CLICK 🚫</button>
             </div>
         </div>
     </div>
 
+    <!-- Audio Element -->
+    <audio id="bgAudio" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio>
+
     <script>
-        // Cute vs Cheese Particle Sets
         const CUTE_EMOJIS = ['🌷', '🌸', '🐱', '🐰', '🧁', '🍩', '🍫', '✨', '🐾', '💄', '🐆', '🐛'];
-        const CHEESE_EMOJIS = ['🧀', '🤮', '⏰', '🪥', '🧀', '🤢', '🧀', '🚨', '⚡'];
+        const CHEESE_EMOJIS = ['🧀', '🤮', '⏰', '🪥', '🧀', '🤢', '🧀', '🚨', '⚡', '🤬', '🪥'];
         let activeEmojis = CUTE_EMOJIS;
 
         const bgContainer = document.getElementById('floatingBg');
@@ -409,30 +369,36 @@
         }
         renderParticles();
 
-        // Treats Counter
+        // Audio Toggle
+        let isAudioPlaying = false;
+        const bgAudio = document.getElementById('bgAudio');
+        function toggleAudio() {
+            const btn = document.getElementById('audioBtn');
+            const name = document.getElementById('songName');
+            if (!isAudioPlaying) {
+                bgAudio.play().catch(()=>{});
+                isAudioPlaying = true;
+                btn.innerText = 'Pause ⏸️';
+                name.innerText = '🎶 Playing Lofi Chill Beats';
+            } else {
+                bgAudio.pause();
+                isAudioPlaying = false;
+                btn.innerText = 'Play 🔊';
+                name.innerText = '🎶 Lofi Vibes: Muted';
+            }
+        }
+
+        // Treats
         const treats = { oreo: 0, cake: 0, donut: 0, sushi: 0 };
         function tapTreat(type) {
             treats[type]++;
             document.getElementById(`${type}Val`).innerText = `${treats[type]} Eaten`;
         }
 
-        // Glam Function
-        function activateGlam() {
-            alert("✨ Mascara glowing! Blush set! Fluffy socks and onesie equipped! 🧦💖");
-        }
-
-        // Bloom Garden
+        // Bloom
         function bloomGarden() {
             const grid = document.getElementById('flowerGrid');
-            grid.innerHTML = '';
-            const list = ['🌷', '🌸', '💐', '🌷', '🌸', '💐'];
-            list.forEach((f, i) => {
-                const s = document.createElement('span');
-                s.className = 'flower-pop';
-                s.innerText = f;
-                s.style.animationDelay = `${i * 0.08}s`;
-                grid.appendChild(s);
-            });
+            grid.innerHTML = '🌷 🌸 💐 🌷 🌸 💐';
         }
 
         // Mini Game Logic
@@ -484,11 +450,9 @@
             if (!gameRunning) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Basket
             ctx.font = '26px sans-serif';
             ctx.fillText('🧺', basket.x, basket.y + 24);
 
-            // Drop Items
             if (Math.random() < 0.06) {
                 items.push({
                     x: Math.random() * (canvas.width - 25),
@@ -515,7 +479,7 @@
             animId = requestAnimationFrame(runGame);
         }
 
-        // IMMERSIVE CHEESE MODE TOGGLE
+        // IMMERSIVE CHEESE & DISLIKES MODE
         let isCheese = false;
         function toggleCheeseMode() {
             isCheese = !isCheese;
@@ -526,20 +490,21 @@
                 activeEmojis = CHEESE_EMOJIS;
                 renderParticles();
 
-                document.getElementById('heroTitle').innerText = "🧀 CHEESE NIGHTMARE 🧀";
-                document.getElementById('heroSub').innerText = "Waking up at 6 AM • Eating after brushing teeth 🤮";
-                document.getElementById('evilBtn').innerText = "ESCAPE CHEESE NIGHTMARE 🧼";
-                document.getElementById('warningTag').innerText = "⚠️ CHEESE OVERLOAD ACTIVE ⚠️";
-                document.getElementById('snackDesc').innerText = "Eww! Moldy cheese treats everywhere! 🧀🤮";
-                document.getElementById('glamDesc').innerText = "Degradation alert! Forced early wake-up call at 5 AM! ⏰⚡";
-                document.getElementById('loveDesc').innerText = "Everything she hates in one place! Cheese WITH A PASSION! 🚫🧀";
+                document.getElementById('heroTitle').innerText = "🧀 DISLIKES NIGHTMARE 🧀";
+                document.getElementById('heroSub').innerText = "CHEESE WITH A PASSION • 5 AM ALARM • BRUSHED TEETH HAZARD 🤮";
+                document.getElementById('evilBtn').innerText = "ESCAPE NIGHTMARE NOW! 🧼💖";
+                document.getElementById('warningTag').innerText = "🚨 MAXIMUM DISLIKES HAZARD ACTIVE 🚨";
+                document.getElementById('musicTitle').innerText = "⏰ FORCED EARLY ALARM";
+                document.getElementById('musicDesc').innerText = "SLEEP EARLY & WAKE UP AT 5:00 AM MODE ACTIVATED! 😴⚡";
+                document.getElementById('snackDesc').innerText = "EATING RIGHT AFTER BRUSHING TEETH! MINTY ORANGE JUICE & CHEESE 🧀🪥🤮";
+                document.getElementById('loveDesc').innerText = "CRUEL DEGRADING REMARKS ACTIVATED! (TOO SENSITIVE FOR THIS!! 😭❌)";
 
                 document.getElementById('e1').innerText = '🧀';
                 document.getElementById('e2').innerText = '🤮';
                 document.getElementById('e3').innerText = '⏰';
                 document.getElementById('e4').innerText = '🪥';
 
-                alert("🤮 CHEESE HAZARD ACTIVATED! ZERO CHEESE TOLERANCE BROKEN! 🧀⚡");
+                alert("🤮 CRITICAL ERROR! CHEESE OVERLOAD! 5:00 AM ALARMS! EATING AFTER BRUSHING TEETH! HIT ESCAPE IMMEDIATELY!!");
             } else {
                 body.classList.remove('cheese-nightmare');
                 activeEmojis = CUTE_EMOJIS;
@@ -549,8 +514,9 @@
                 document.getElementById('heroSub').innerText = "Teal & Pink Paradise ✨";
                 document.getElementById('evilBtn').innerText = "DO NOT CLICK 🚫";
                 document.getElementById('warningTag').innerText = "⚠️ WARNING: DO NOT PRESS BELOW ⚠️";
-                document.getElementById('snackDesc').innerText = "Tap treats to eat them up!";
-                document.getElementById('glamDesc').innerText = "Put on fluffy socks, cozy onesies, mascara & blush! ✨";
+                document.getElementById('musicTitle').innerText = "🎵 Cozy Vibe Player";
+                document.getElementById('musicDesc').innerText = "Tap to play relaxing background lofi music while exploring!";
+                document.getElementById('snackDesc').innerText = "Tap snacks to eat them up!";
                 document.getElementById('loveDesc').innerText = "Loving all the unloved creatures—from big cats & cheetahs to cute millipedes! 💛";
 
                 document.getElementById('e1').innerText = '🍦';
