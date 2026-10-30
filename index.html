@@ -4,24 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>For My Favorite Person ✨</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
             --pink-main: #ff7ebb;
             --pink-soft: #ffd3e2;
-            --pink-glow: #ffb3d1;
             --teal-main: #2dd4bf;
             --teal-soft: #ccfbf1;
             --teal-deep: #0f766e;
-            --bg-dark: #121824;
-            --card-glass: rgba(255, 255, 255, 0.75);
-            --card-border: rgba(255, 255, 255, 0.8);
-            --text-dark: #2d3748;
-            --text-muted: #64748b;
-            --font-title: 'Fredoka One', cursive;
-            --font-body: 'Nunito', sans-serif;
-            --safe-top: env(safe-area-inset-top, 20px);
-            --safe-bottom: env(safe-area-inset-bottom, 20px);
         }
 
         * {
@@ -32,182 +23,205 @@
             user-select: none;
         }
 
-        body {
-            font-family: var(--font-body);
-            background: linear-gradient(135deg, #101827 0%, #1a2333 100%);
-            color: var(--text-dark);
-            min-height: 100vh;
-            min-height: -webkit-fill-available;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-            padding: 0;
-        }
-
-        /* iPhone Frame Simulator for PC / Screen Wrapper */
-        .mobile-container {
+        html, body {
             width: 100%;
-            max-width: 430px; /* iPhone 15/16 Pro Max width */
             min-height: 100vh;
-            min-height: -webkit-fill-available;
-            background: linear-gradient(165deg, #a7f3d0 0%, #7dd3fc 25%, #fbcfe8 70%, #f472b6 100%);
-            background-size: 200% 200%;
-            animation: gradientFlow 12s ease infinite;
-            position: relative;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            padding: calc(var(--safe-top) + 20px) 16px calc(var(--safe-bottom) + 30px) 16px;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
+            background: linear-gradient(135deg, #a7f3d0 0%, #7dd3fc 30%, #fbcfe8 70%, #f472b6 100%);
+            background-attachment: fixed;
+            font-family: 'Nunito', sans-serif;
+            color: #1e293b;
+            overflow-x: hidden;
         }
 
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .title-font {
+            font-family: 'Fredoka One', cursive;
         }
 
-        /* Floating Animated Background Items */
-        .floating-bg {
-            position: absolute;
-            inset: 0;
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 10px 30px rgba(15, 118, 110, 0.1);
+        }
+
+        /* Animated Floating Background Icons */
+        .floating-emoji {
+            position: fixed;
             pointer-events: none;
-            overflow: hidden;
             z-index: 1;
-        }
-
-        .bg-item {
-            position: absolute;
-            font-size: 1.5rem;
+            animation: floatUp 12s linear infinite;
             opacity: 0.35;
-            animation: floatUp 10s linear infinite;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
         @keyframes floatUp {
             0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.4; }
-            80% { opacity: 0.4; }
+            15% { opacity: 0.4; }
+            85% { opacity: 0.4; }
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Content Stack */
-        .content {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            width: 100%;
-        }
-
-        /* Header Card */
-        .hero-card {
-            background: var(--card-glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 2px solid var(--card-border);
-            border-radius: 28px;
-            padding: 24px 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        .hero-title {
-            font-family: var(--font-title);
-            font-size: 1.8rem;
-            background: linear-gradient(135deg, #0f766e 0%, #db2777 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 6px;
-            letter-spacing: 0.5px;
-        }
-
-        .hero-subtitle {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #475569;
-        }
-
-        /* Section Cards Placeholder */
-        .card {
-            background: var(--card-glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 2px solid var(--card-border);
-            border-radius: 24px;
-            padding: 18px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .card-title {
-            font-family: var(--font-title);
-            font-size: 1.2rem;
-            color: #0f766e;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Touch Effect for iPhone */
-        .card:active, .interactive-btn:active {
-            transform: scale(0.98);
-            transition: transform 0.1s ease;
-        }
-
-        /* Particle Trail Canvas */
+        /* Sparkle Particle Canvas */
         #particle-canvas {
             position: fixed;
             inset: 0;
             pointer-events: none;
-            z-index: 99;
+            z-index: 999;
+        }
+
+        /* Mini-Game Arena */
+        #game-area {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            background: rgba(255, 255, 255, 0.45);
+            border-radius: 20px;
+            overflow: hidden;
+            touch-action: none;
+            border: 2px dashed rgba(45, 212, 191, 0.5);
+        }
+
+        .falling-item {
+            position: absolute;
+            font-size: 2rem;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        #catcher-basket {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: transform 0.05s linear;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+        }
+
+        /* Flower Bloom Effect */
+        .flower-bloom {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .flower-bloom:hover, .flower-bloom:active {
+            transform: scale(1.25) rotate(8deg);
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col items-center justify-start min-h-screen p-4 sm:p-6 pb-12">
 
+    <!-- Sparkle Canvas -->
     <canvas id="particle-canvas"></canvas>
 
-    <div class="mobile-container">
-        <!-- Floating items layer -->
-        <div class="floating-bg" id="floatingBg"></div>
+    <!-- Floating Emojis Layer -->
+    <div id="floating-bg-container"></div>
 
-        <div class="content">
-            <!-- Hero Header -->
-            <div class="hero-card">
-                <h1 class="hero-title">Welcome to Your World 🌷</h1>
-                <p class="hero-subtitle">Made with love • Pink & Teal Edition ✨</p>
+    <!-- Main Outer Container - Perfectly centered & fits iPhone & Desktop smoothly -->
+    <div class="w-full max-w-md flex flex-col gap-5 relative z-10 my-auto">
+
+        <!-- Main Header -->
+        <header class="glass-card rounded-3xl p-6 text-center border-2 border-white/80">
+            <span class="inline-block px-3 py-1 bg-teal-100 text-teal-800 font-bold text-xs rounded-full mb-2 border border-teal-200">
+                ✨ Pink & Teal Kingdom ✨
+            </span>
+            <h1 class="title-font text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-pink-500 drop-shadow-sm">
+                For My Favorite Person
+            </h1>
+            <p class="text-slate-600 font-bold text-sm mt-1">Cats, Bunnies, Sweets & Lots of Love 💖</p>
+        </header>
+
+        <!-- Interactive Minigame Card -->
+        <section class="glass-card rounded-3xl p-5 text-center">
+            <div class="flex items-center justify-between mb-3 px-1">
+                <h2 class="title-font text-xl text-teal-700 flex items-center gap-2">
+                    <span>🎮</span> Catch The Goodies!
+                </h2>
+                <div class="bg-pink-200/80 text-pink-800 font-extrabold text-sm px-3 py-1 rounded-full border border-pink-300">
+                    Score: <span id="game-score">0</span>
+                </div>
             </div>
 
-            <!-- Starter Section Card -->
-            <div class="card">
-                <div class="card-title">🌸 Flower Garden</div>
-                <p style="font-size: 0.9rem; color: #475569;">Tulips & Lilies blooming just for you...</p>
+            <!-- Game Box -->
+            <div id="game-area" class="flex items-center justify-center">
+                <div id="game-start-overlay" class="absolute inset-0 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center p-4 z-20">
+                    <p class="title-font text-teal-800 text-lg mb-1">Catch treats in the basket! 🧺</p>
+                    <p class="text-xs text-slate-500 font-bold mb-4">Drag basket left & right with your finger/mouse!</p>
+                    <button onclick="startGame()" class="title-font px-6 py-2.5 bg-gradient-to-r from-teal-400 to-pink-400 text-white rounded-full text-base shadow-md hover:scale-105 active:scale-95 transition-all">
+                        Tap to Play! ✨
+                    </button>
+                </div>
+                <div id="catcher-basket">🧺</div>
             </div>
-        </div>
+        </section>
+
+        <!-- Flower Garden Section -->
+        <section class="glass-card rounded-3xl p-5">
+            <h2 class="title-font text-xl text-teal-700 mb-2 flex items-center gap-2">
+                <span>🌷</span> Flower Garden
+            </h2>
+            <p class="text-xs font-bold text-slate-600 mb-3">Tap flowers to make them bloom! (Lilies are top favorite! 👑)</p>
+            <div class="grid grid-cols-4 gap-3 text-center">
+                <div class="p-3 bg-white/60 rounded-2xl border border-white cursor-pointer flower-bloom text-3xl">🪷</div>
+                <div class="p-3 bg-white/60 rounded-2xl border border-white cursor-pointer flower-bloom text-3xl">🌷</div>
+                <div class="p-3 bg-white/60 rounded-2xl border border-white cursor-pointer flower-bloom text-3xl">🪷</div>
+                <div class="p-3 bg-white/60 rounded-2xl border border-white cursor-pointer flower-bloom text-3xl">🌷</div>
+            </div>
+        </section>
+
+        <!-- Love the Unloved Corner -->
+        <section class="glass-card rounded-3xl p-5">
+            <h2 class="title-font text-xl text-pink-600 mb-2 flex items-center gap-2">
+                <span>🐛</span> Loving the Unloved 💕
+            </h2>
+            <p class="text-xs font-bold text-slate-600 mb-3">Cheetahs & friendly millipedes deserve all the love! ✨</p>
+            <div class="flex gap-3">
+                <div class="flex-1 bg-teal-50/80 p-3 rounded-2xl border border-teal-200 text-center">
+                    <div class="text-3xl mb-1">🐆</div>
+                    <span class="title-font text-xs text-teal-800">Big Cats</span>
+                </div>
+                <div class="flex-1 bg-pink-50/80 p-3 rounded-2xl border border-pink-200 text-center">
+                    <div class="text-3xl mb-1">🐛</div>
+                    <span class="title-font text-xs text-pink-800">Millipedes</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Anti-Cheese Warning Zone -->
+        <section class="glass-card rounded-3xl p-5 border-2 border-red-200/60">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="title-font text-lg text-red-500 flex items-center gap-1.5">
+                        <span>🛑</span> Anti-Cheese Shield
+                    </h2>
+                    <p class="text-xs font-bold text-slate-500">Protection from cheese & early alarms!</p>
+                </div>
+                <button onclick="toggleCheeseShield(this)" class="px-4 py-2 bg-red-100 text-red-600 font-extrabold text-xs rounded-full border border-red-200 active:scale-95 transition-all">
+                    ACTIVE 🛡️
+                </button>
+            </div>
+        </section>
+
     </div>
 
     <script>
-        // Floating Background Generator
-        const emojis = ['🌷', '🌸', '🐱', '🐰', '🧁', '🍩', '🍫', '✨'];
-        const bgContainer = document.getElementById('floatingBg');
+        // Floating Background Elements
+        const emojis = ['🐱', '🐰', '🌷', '🧁', '🍩', '🍦', '🍫', '✨', '🌸', '🧸'];
+        const container = document.getElementById('floating-bg-container');
 
-        for (let i = 0; i < 15; i++) {
-            const item = document.createElement('div');
-            item.className = 'bg-item';
-            item.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-            item.style.left = `${Math.random() * 90}%`;
-            item.style.animationDelay = `${Math.random() * 8}s`;
-            item.style.animationDuration = `${8 + Math.random() * 6}s`;
-            bgContainer.appendChild(item);
+        for (let i = 0; i < 18; i++) {
+            const el = document.createElement('div');
+            el.className = 'floating-emoji';
+            el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            el.style.left = `${Math.random() * 92}%`;
+            el.style.fontSize = `${Math.random() * 0.8 + 1.2}rem`;
+            el.style.animationDelay = `${Math.random() * 10}s`;
+            el.style.animationDuration = `${10 + Math.random() * 8}s`;
+            container.appendChild(el);
         }
 
-        // Particle Touch/Mouse Sparkles
+        // Mouse & Touch Particle Sparkles
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -219,14 +233,14 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        class Particle {
+        class Sparkle {
             constructor(x, y) {
                 this.x = x;
                 this.y = y;
-                this.size = Math.random() * 6 + 2;
+                this.size = Math.random() * 5 + 2;
                 this.speedX = (Math.random() - 0.5) * 3;
                 this.speedY = (Math.random() - 0.5) * 3;
-                this.color = Math.random() > 0.5 ? '#ff7ebb' : '#2dd4bf';
+                this.color = Math.random() > 0.5 ? '#2dd4bf' : '#ff7ebb';
                 this.alpha = 1;
             }
             update() {
@@ -245,27 +259,134 @@
             }
         }
 
-        function addParticles(e) {
+        function createSparkles(e) {
             const x = e.touches ? e.touches[0].clientX : e.clientX;
             const y = e.touches ? e.touches[0].clientY : e.clientY;
             for (let i = 0; i < 2; i++) {
-                particles.push(new Particle(x, y));
+                particles.push(new Sparkle(x, y));
             }
         }
 
-        window.addEventListener('mousemove', addParticles);
-        window.addEventListener('touchmove', addParticles);
+        window.addEventListener('mousemove', createSparkles);
+        window.addEventListener('touchmove', createSparkles);
 
-        function animateParticles() {
+        function renderSparkles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach((p, index) => {
+            particles.forEach((p, idx) => {
                 p.update();
                 p.draw();
-                if (p.alpha <= 0) particles.splice(index, 1);
+                if (p.alpha <= 0) particles.splice(idx, 1);
             });
-            requestAnimationFrame(animateParticles);
+            requestAnimationFrame(renderSparkles);
         }
-        animateParticles();
+        renderSparkles();
+
+        // Mini-Game Logic
+        let gameScore = 0;
+        let isGameRunning = false;
+        const gameArea = document.getElementById('game-area');
+        const basket = document.getElementById('catcher-basket');
+        const scoreDisplay = document.getElementById('game-score');
+        const treatEmojis = ['🧁', '🍩', '🍦', '🐰', '🧸', '🐛'];
+
+        let basketX = gameArea.clientWidth / 2;
+
+        function updateBasketPos(clientX) {
+            const rect = gameArea.getBoundingClientRect();
+            basketX = clientX - rect.left;
+            basketX = Math.max(30, Math.min(rect.width - 30, basketX));
+            basket.style.left = `${basketX}px`;
+        }
+
+        gameArea.addEventListener('mousemove', (e) => {
+            if (isGameRunning) updateBasketPos(e.clientX);
+        });
+
+        gameArea.addEventListener('touchmove', (e) => {
+            if (isGameRunning && e.touches[0]) {
+                updateBasketPos(e.touches[0].clientX);
+            }
+        });
+
+        function startGame() {
+            document.getElementById('game-start-overlay').style.display = 'none';
+            gameScore = 0;
+            scoreDisplay.innerText = gameScore;
+            isGameRunning = true;
+            spawnTreat();
+        }
+
+        function spawnTreat() {
+            if (!isGameRunning) return;
+
+            const treat = document.createElement('div');
+            treat.className = 'falling-item';
+            treat.innerText = treatEmojis[Math.floor(Math.random() * treatEmojis.length)];
+            
+            const startX = Math.random() * (gameArea.clientWidth - 40) + 20;
+            let currentY = 0;
+            
+            treat.style.left = `${startX}px`;
+            treat.style.top = `${currentY}px`;
+            gameArea.appendChild(treat);
+
+            const fallInterval = setInterval(() => {
+                if (!isGameRunning) {
+                    clearInterval(fallInterval);
+                    treat.remove();
+                    return;
+                }
+
+                currentY += 3.5;
+                treat.style.top = `${currentY}px`;
+
+                // Catch Detection
+                if (currentY >= 235 && Math.abs(startX - basketX) < 35) {
+                    gameScore += 10;
+                    scoreDisplay.innerText = gameScore;
+                    clearInterval(fallInterval);
+                    treat.remove();
+                    createHeartBurst(basketX, 230);
+                }
+
+                // Missed Item
+                if (currentY > 280) {
+                    clearInterval(fallInterval);
+                    treat.remove();
+                }
+            }, 16);
+
+            setTimeout(spawnTreat, Math.random() * 800 + 600);
+        }
+
+        function createHeartBurst(x, y) {
+            const burst = document.createElement('div');
+            burst.innerText = '💖';
+            burst.style.position = 'absolute';
+            burst.style.left = `${x}px`;
+            burst.style.top = `${y}px`;
+            burst.style.transform = 'translate(-50%, -50%) scale(1.2)';
+            burst.style.transition = 'all 0.5s ease-out';
+            burst.style.pointerEvents = 'none';
+            gameArea.appendChild(burst);
+
+            setTimeout(() => {
+                burst.style.transform = 'translate(-50%, -100px) scale(0)';
+                burst.style.opacity = '0';
+            }, 20);
+
+            setTimeout(() => burst.remove(), 520);
+        }
+
+        function toggleCheeseShield(btn) {
+            if (btn.innerText.includes('ACTIVE')) {
+                btn.innerText = 'DISABLED ⚠️';
+                btn.className = 'px-4 py-2 bg-slate-200 text-slate-600 font-extrabold text-xs rounded-full border border-slate-300';
+            } else {
+                btn.innerText = 'ACTIVE 🛡️';
+                btn.className = 'px-4 py-2 bg-red-100 text-red-600 font-extrabold text-xs rounded-full border border-red-200';
+            }
+        }
     </script>
 </body>
 </html>
