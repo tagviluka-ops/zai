@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>for you ✨</title>
+    <title>for you, princess ✨</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Plus+Jakarta+Sans:wght@600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-base: #060913;
             --gradient-cute: linear-gradient(160deg, #14b8a6 0%, #0284c7 30%, #ec4899 75%, #f43f5e 100%);
-            --card-glass: rgba(255, 255, 255, 0.9);
+            --card-glass: rgba(255, 255, 255, 0.92);
             --card-border: rgba(255, 255, 255, 0.95);
             --card-shadow: 0 20px 40px rgba(236, 72, 153, 0.22);
             --text-main: #0f172a;
@@ -113,8 +113,6 @@
             border-radius: 28px;
             padding: 20px;
             box-shadow: var(--card-shadow);
-            transform-style: preserve-3d;
-            perspective: 1000px;
         }
 
         .card-title {
@@ -153,6 +151,60 @@
             margin-bottom: 4px;
         }
 
+        /* STREAK COUNTER BADGE */
+        .streak-badge {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: white;
+            border-radius: 24px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(255, 65, 108, 0.4);
+            margin-bottom: 12px;
+        }
+
+        .streak-num {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            line-height: 1;
+            display: block;
+            margin: 6px 0;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* iMESSAGE TEXT BUBBLE STYLE */
+        .imessage-box {
+            background: #e9e9eb;
+            border-radius: 20px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bubble-received {
+            background: #ffffff;
+            color: #000;
+            padding: 10px 14px;
+            border-radius: 18px 18px 18px 4px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            max-width: 85%;
+            align-self: flex-start;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .bubble-sent {
+            background: #007aff;
+            color: #ffffff;
+            padding: 10px 14px;
+            border-radius: 18px 18px 4px 18px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            max-width: 85%;
+            align-self: flex-end;
+            box-shadow: 0 2px 6px rgba(0,122,255,0.2);
+        }
+
         /* BUTTONS */
         .btn-action {
             width: 100%;
@@ -187,12 +239,11 @@
             text-align: center;
             cursor: pointer;
             border: 2px solid rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
         }
 
         .polaroid-frame {
             width: 100%;
-            height: 140px;
+            height: 130px;
             background: linear-gradient(135deg, #fbcfe8, #ccfbf1);
             border-radius: 14px;
             display: flex;
@@ -205,7 +256,7 @@
         /* CRAVING CHIPS */
         .craving-chip {
             display: inline-block;
-            background: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.85);
             padding: 10px 14px;
             border-radius: 16px;
             font-size: 0.82rem;
@@ -326,13 +377,46 @@
                 <p style="font-size:0.9rem; font-weight:700; color:var(--text-sub);" id="heroSub">all your favorite things in one place ✨</p>
             </div>
 
+            <!-- NEW FEATURE 1: Custom Goon Streak Tracker -->
+            <div class="card">
+                <div class="card-title" id="streakTitle">🔥 goon streak tracker</div>
+                <p class="card-desc" id="streakDesc">our current streak together. keep it going, princess!</p>
+                <div class="streak-badge" id="streakBox">
+                    <span style="font-size:0.85rem; font-weight:800; text-transform:uppercase; letter-spacing:1px;">active streak</span>
+                    <span class="streak-num" id="streakNum">3</span>
+                    <span style="font-size:0.85rem; font-weight:700;" id="streakSub">DAYS STREAK ON FIRE! ⚡</span>
+                </div>
+                <button class="btn-action" onclick="incrementStreak()">check in today 🔥</button>
+            </div>
+
+            <!-- NEW FEATURE 2: iMessage Cute Text Generator -->
+            <div class="card">
+                <div class="card-title" id="msgTitle">💬 text me card</div>
+                <p class="card-desc" id="msgDesc">tap to send an instant cute text response</p>
+                <div class="imessage-box">
+                    <div class="bubble-received" id="bReceived">me: you're looking gorgeous today, princess 💖</div>
+                    <div class="bubble-sent" id="bSent">her: I know, good girl status confirmed ✨</div>
+                </div>
+                <button class="btn-action teal" style="margin-top:10px;" onclick="cycleMessage()">send reply 📲</button>
+            </div>
+
+            <!-- NEW FEATURE 3: What Should We Do Wheel / Decision Maker -->
+            <div class="card">
+                <div class="card-title" id="decideTitle">🎯 what should we do?</div>
+                <p class="card-desc" id="decideDesc">can't decide what to do? tap to spin the randomizer!</p>
+                <div style="background:rgba(255,255,255,0.7); border-radius:18px; padding:14px; text-align:center; font-size:0.95rem; font-weight:800; color:var(--accent-teal); margin-bottom:10px; border:1px dashed var(--card-border);" id="decideDisplay">
+                    tap below to pick an activity ✨
+                </div>
+                <button class="btn-action" onclick="pickActivity()">spin decision 🎲</button>
+            </div>
+
             <!-- Memory Polaroid Deck -->
             <div class="card">
                 <div class="card-title" id="polaroidTitle">📸 memory deck</div>
-                <p class="card-desc" id="polaroidDesc">tap to flip through your memories</p>
+                <p class="card-desc" id="polaroidDesc">tap to flip through memories</p>
                 <div class="polaroid-card" onclick="nextPolaroid()">
                     <div class="polaroid-frame" id="photoFrame">🐱</div>
-                    <div style="font-size:0.88rem; font-weight:800; color:var(--text-main);" id="photoCaption">cat appreciation card</div>
+                    <div style="font-size:0.88rem; font-weight:800; color:var(--text-main);" id="photoCaption">cats and fluffy bunnies</div>
                 </div>
             </div>
 
@@ -351,10 +435,10 @@
                 <div class="card-title" id="cravingTitle">✨ tonight's plan</div>
                 <p class="card-desc" id="cravingDesc">pick what sounds best right now, princess:</p>
                 <div>
-                    <span class="craving-chip" onclick="selectCraving('sushi')">🍣 Late Night Sushi</span>
-                    <span class="craving-chip" onclick="selectCraving('oreo')">🍦 Oreo Ice Cream Sandwich</span>
-                    <span class="craving-chip" onclick="selectCraving('onesie')">🧸 Fluffy Socks & Onesies</span>
-                    <span class="craving-chip" onclick="selectCraving('anime')">🍿 Anime Marathon</span>
+                    <span class="craving-chip" onclick="selectCraving('🍣 Late Night Sushi')">🍣 Late Night Sushi</span>
+                    <span class="craving-chip" onclick="selectCraving('🍦 Oreo Ice Cream Sandwich')">🍦 Oreo Ice Cream Sandwich</span>
+                    <span class="craving-chip" onclick="selectCraving('🧸 Fluffy Socks & Onesies')">🧸 Fluffy Socks & Onesies</span>
+                    <span class="craving-chip" onclick="selectCraving('🍿 Anime Marathon')">🍿 Anime Marathon</span>
                 </div>
                 <div id="selectedCraving" style="margin-top:10px; font-size:0.85rem; font-weight:800; color:var(--accent-teal); text-align:center;"></div>
             </div>
@@ -450,6 +534,55 @@
             setTimeout(() => burst.remove(), 600);
         }
 
+        // Streak Tracker Logic
+        let streakCount = 3;
+        function incrementStreak() {
+            if (isCheese) {
+                alert("STREAK CANCELLED! ZERO STREAK IN CHEESE MODE 🤮");
+                return;
+            }
+            streakCount++;
+            document.getElementById('streakNum').innerText = streakCount;
+            alert("🔥 Check-in complete! Streak is now " + streakCount + " days! Keep it up, good girl!");
+        }
+
+        // iMessage Bubble Cycler
+        const cuteMessages = [
+            { r: "me: you're looking gorgeous today, princess 💖", s: "her: I know, good girl status confirmed ✨" },
+            { r: "me: late night faceTime later? 🌙", s: "her: only if we watch anime together 🍿" },
+            { r: "me: zero cheese allowed near you ever 🚫", s: "her: best decision ever made 🧁" }
+        ];
+        let msgIndex = 0;
+        function cycleMessage() {
+            if (isCheese) {
+                document.getElementById('bReceived').innerText = "me: CHEESE HAZARD ALERT!! 🧀";
+                document.getElementById('bSent').innerText = "her: WAKING UP AT 5:00 AM IS CANCELLED 🤮";
+                return;
+            }
+            msgIndex = (msgIndex + 1) % cuteMessages.length;
+            document.getElementById('bReceived').innerText = cuteMessages[msgIndex].r;
+            document.getElementById('bSent').innerText = cuteMessages[msgIndex].s;
+        }
+
+        // Decision Maker
+        const activitiesCute = [
+            " Late Night FaceTime Call 📞",
+            "🍿 Watch an Anime Marathon 🍿",
+            "🍣 Get Oreo Ice Cream & Sushi 🍦",
+            "🧸 Wear Fluffy Socks & Onesies 🧦",
+            "🎮 Play Catch the Goodies Game 🕹️"
+        ];
+        const activitiesCheese = [
+            "🧀 Eat Cheddar Cheese 🤮",
+            "⏰ Wake Up at 5:00 AM 😴",
+            "🪥 Eat Citrus Right After Brushing Teeth 🪥"
+        ];
+        function pickActivity() {
+            const list = isCheese ? activitiesCheese : activitiesCute;
+            const chosen = list[Math.floor(Math.random() * list.length)];
+            document.getElementById('decideDisplay').innerText = "Result: " + chosen;
+        }
+
         // Polaroid Deck
         const polaroidsCute = [
             { icon: '🐱', cap: 'cats and fluffy bunnies' },
@@ -474,12 +607,12 @@
         }
 
         // Craving Picker
-        function selectCraving(type) {
+        function selectCraving(text) {
             const display = document.getElementById('selectedCraving');
             if (isCheese) {
                 display.innerText = "NO! ONLY MOLDY CHEESE SERVED HERE 🧀🤮";
             } else {
-                display.innerText = type + " night is officially locked in 💖";
+                display.innerText = text + " night is officially locked in 💖";
             }
         }
 
@@ -614,6 +747,19 @@
                 document.getElementById('evilBtn').innerText = "GET ME OUT OF HERE NOW, MOMMY 🧼✨";
                 document.getElementById('warningTag').innerText = "🚨 EVERYTHING YOU HATE IS HAPPENING, PRINCESS 🚨";
                 
+                document.getElementById('streakTitle').innerText = "🤮 cancelled streak";
+                document.getElementById('streakDesc').innerText = "cheese overload cancelled your streak!";
+                document.getElementById('streakNum').innerText = "0";
+                document.getElementById('streakSub').innerText = "MOLDY CHEESE HAZARD ⚡";
+
+                document.getElementById('msgTitle').innerText = "🤮 cursed text bubble";
+                document.getElementById('msgDesc').innerText = "5:00 AM alarms incoming!";
+                cycleMessage();
+
+                document.getElementById('decideTitle').innerText = "🧀 cheese wheel";
+                document.getElementById('decideDesc').innerText = "only gross options available!";
+                pickActivity();
+
                 document.getElementById('polaroidTitle').innerText = "🤮 nightmare gallery";
                 document.getElementById('polaroidDesc').innerText = "tap to see gross cheese memories";
                 nextPolaroid();
@@ -653,8 +799,21 @@
                 document.getElementById('evilBtn').innerText = "✨ DO NOT CLICK 🚫 ✨";
                 document.getElementById('warningTag').innerText = "⚠️ DANGER: DO NOT PRESS THIS BUTTON ⚠️";
 
+                document.getElementById('streakTitle').innerText = "🔥 goon streak tracker";
+                document.getElementById('streakDesc').innerText = "our current streak together. keep it going, princess!";
+                document.getElementById('streakNum').innerText = streakCount;
+                document.getElementById('streakSub').innerText = "DAYS STREAK ON FIRE! ⚡";
+
+                document.getElementById('msgTitle').innerText = "💬 text me card";
+                document.getElementById('msgDesc').innerText = "tap to send an instant cute text response";
+                cycleMessage();
+
+                document.getElementById('decideTitle').innerText = "🎯 what should we do?";
+                document.getElementById('decideDesc').innerText = "can't decide what to do? tap to spin the randomizer!";
+                document.getElementById('decideDisplay').innerText = "tap below to pick an activity ✨";
+
                 document.getElementById('polaroidTitle').innerText = "📸 memory deck";
-                document.getElementById('polaroidDesc').innerText = "tap to flip through your memories";
+                document.getElementById('polaroidDesc').innerText = "tap to flip through memories";
                 nextPolaroid();
 
                 document.getElementById('moodTitle').innerText = "💭 daily mood check";
