@@ -176,7 +176,6 @@
             box-shadow: 0 8px 20px rgba(13, 148, 136, 0.3);
         }
 
-        /* Mood Generator Box */
         .mood-box {
             background: rgba(255,255,255,0.65);
             border-radius: 18px;
@@ -242,31 +241,39 @@
             font-size: 0.9rem;
         }
 
-        /* EVIL BUTTON */
+        /* SUPER FLASHY EVIL BUTTON */
         .evil-trigger {
-            background: linear-gradient(135deg, #ef4444, #991b1b);
+            background: linear-gradient(135deg, #ef4444, #991b1b, #f59e0b);
+            background-size: 200% 200%;
             color: white;
-            border: 3px solid #fef08a;
+            border: 4px dashed #fef08a;
             padding: 16px;
             border-radius: 24px;
             font-family: var(--font-title);
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             width: 100%;
             cursor: pointer;
-            box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
-            animation: evilPulse 1.2s infinite alternate;
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.8), inset 0 0 15px rgba(254, 240, 138, 0.5);
+            animation: flashyNeon 1.2s infinite alternate, colorShift 4s ease infinite;
         }
 
-        @keyframes evilPulse {
-            0% { transform: scale(1); box-shadow: 0 0 12px rgba(239, 68, 68, 0.4); }
-            100% { transform: scale(1.04); box-shadow: 0 0 30px rgba(239, 68, 68, 0.9); }
+        @keyframes flashyNeon {
+            0% { transform: scale(1) rotate(0deg); box-shadow: 0 0 15px rgba(239, 68, 68, 0.6); }
+            50% { transform: scale(1.05) rotate(1deg); box-shadow: 0 0 35px rgba(251, 191, 36, 0.9); }
+            100% { transform: scale(1) rotate(0deg); box-shadow: 0 0 15px rgba(239, 68, 68, 0.6); }
+        }
+
+        @keyframes colorShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         body.cheese-nightmare .evil-trigger {
             background: linear-gradient(135deg, #10b981, #047857);
             border-color: #a7f3d0;
-            box-shadow: 0 0 25px rgba(16, 185, 129, 0.8);
-            animation: none;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.9);
+            animation: flashyNeon 1s infinite alternate;
         }
     </style>
 </head>
@@ -282,10 +289,10 @@
                 <p style="font-size:0.9rem; font-weight:700; color:var(--text-sub);" id="heroSub">all your favorite things in one little spot ✨</p>
             </div>
 
-            <!-- Useful Feature: Cute Mood / Compliment Generator -->
+            <!-- Mood Generator -->
             <div class="card">
                 <div class="card-title" id="moodTitle">💭 daily mood check</div>
-                <p class="card-desc" id="moodDesc">tap whenever you need a little reminder of how cool you are :p</p>
+                <p class="card-desc" id="moodDesc">tap whenever you need a little reminder of how cool you are</p>
                 <div class="mood-box" id="moodDisplay">tap the button below for a random thought! 👇</div>
                 <button class="btn-action teal" onclick="getRandomMood()">give me good vibes ✨</button>
             </div>
@@ -293,7 +300,7 @@
             <!-- Treats Counter -->
             <div class="card">
                 <div class="card-title" id="snackTitle">🍰 snack tracker</div>
-                <p class="card-desc" id="snackDesc">tap what you're craving or snacking on right now!</p>
+                <p class="card-desc" id="snackDesc">tap what you are craving or snacking on right now</p>
                 <div class="treat-grid">
                     <div class="treat-btn" onclick="tapTreat('oreo')">
                         <span class="treat-emoji" id="e1">🍦</span>
@@ -319,7 +326,7 @@
                 <div class="card-title" id="gardenTitle">🌸 pick your flowers</div>
                 <p class="card-desc" id="gardenDesc">tulips are cute, but lilies are honestly way prettier. tap to grow them!</p>
                 <div id="flowerGrid" style="display:flex; justify-content:center; gap:8px; min-height:45px; align-items:center; font-size:1.8rem;">
-                    <span style="font-size:0.82rem; color:var(--text-sub);">garden is empty rn...</span>
+                    <span style="font-size:0.82rem; color:var(--text-sub);">garden is empty right now...</span>
                 </div>
                 <button class="btn-action teal" style="margin-top:12px;" onclick="bloomGarden()">grow flowers 🌷</button>
             </div>
@@ -339,13 +346,13 @@
             <!-- Love Unloved -->
             <div class="card" style="background: linear-gradient(135deg, rgba(204,251,241,0.9), rgba(255,211,226,0.9));">
                 <div class="card-title" id="unlovedTitle">🐆 loving the unloved 🐛</div>
-                <p class="card-desc" style="margin-bottom:0;" id="unlovedDesc">giving all the love to the weird & cool animals—from big cats and cheetahs to sweet little millipedes! 💛</p>
+                <p class="card-desc" style="margin-bottom:0;" id="unlovedDesc">giving all the love to the weird and cool animals—from big cats and cheetahs to sweet little millipedes! 💛</p>
             </div>
 
-            <!-- EVIL BUTTON -->
+            <!-- FLASHY EVIL BUTTON -->
             <div class="card" style="text-align: center; background: rgba(254, 226, 226, 0.95); border: 2px dashed #ef4444;">
-                <p style="font-weight: 800; color: #dc2626; margin-bottom: 10px; font-size: 0.85rem;" id="warningTag">⚠️ do NOT press this button ⚠️</p>
-                <button class="evil-trigger" id="evilBtn" onclick="toggleCheeseMode()">DO NOT CLICK 🚫</button>
+                <p style="font-weight: 800; color: #dc2626; margin-bottom: 10px; font-size: 0.88rem;" id="warningTag">⚠️ DANGER: DO NOT PRESS THIS BUTTON ⚠️</p>
+                <button class="evil-trigger" id="evilBtn" onclick="toggleCheeseMode()">✨ DO NOT CLICK 🚫 ✨</button>
             </div>
         </div>
     </div>
@@ -373,20 +380,20 @@
 
         // Mood Notes
         const cuteMoods = [
-            "you're literally doing amazing today fr 💅",
-            "reminder: take a sip of water right now bestie 💧",
-            "your music taste is elite and nobody can tell you otherwise 🎧",
-            "staying up late is a lifestyle and it's valid 🌙",
-            "you deserve a whole batch of fresh cupcakes rn 🧁",
-            "zero cheese allowed near you ever 🚫🧀"
+            "you are having a wonderful day today",
+            "reminder: take a sip of water right now",
+            "your music taste is amazing and nobody can argue",
+            "staying up late is a valid lifestyle choice",
+            "you deserve a whole batch of fresh cupcakes right now",
+            "zero cheese allowed near you ever"
         ];
 
         const cheeseMoods = [
-            "⚠️ EWWWW CHEESE SMELL EVERYWHERE 🤮",
-            "⏰ IT IS 5:00 AM AND YOU HAVE TO WAKE UP NOW!!",
-            "🪥 YOU JUST BRUSHED YOUR TEETH AND NOW YOU'RE EATING ORANGE JUICE & CHEESE",
-            "🤬 SOMEONE SAID SOMETHING SUPER DEGRADING OOF",
-            "🚨 RUN AWAY FROM THE MOLDY CHEESE QUICKLY 🧀🏃‍♀️"
+            "EWW CHEESE SMELL IS EVERYWHERE",
+            "IT IS 5:00 AM AND YOU HAVE TO WAKE UP NOW",
+            "YOU JUST BRUSHED YOUR TEETH AND NOW YOU ARE EATING CHEESE",
+            "SOMEONE SAID SOMETHING SUPER UNKIND",
+            "RUN AWAY FROM THE MOLDY CHEESE QUICKLY"
         ];
 
         function getRandomMood() {
@@ -408,7 +415,7 @@
             grid.innerHTML = isCheese ? '🧀 🤮 🧀 🤮 🧀 🤮' : '🌷 🌸 💐 🌷 🌸 💐';
         }
 
-        // Mini Game Logic
+        // Balanced Mini Game Logic
         let gameRunning = false;
         let animId = null;
         let score = 0;
@@ -418,7 +425,7 @@
         const gameToggleBtn = document.getElementById('gameToggleBtn');
         const gameScore = document.getElementById('gameScore');
 
-        let basket = { x: 150, y: 220, w: 60, h: 30 };
+        let basket = { x: 150, y: 220, w: 65, h: 30 };
         let items = [];
 
         function toggleMiniGame() {
@@ -442,12 +449,14 @@
         function resizeCanvas() {
             canvas.width = gameFrame.clientWidth;
             canvas.height = gameFrame.clientHeight;
-            basket.y = canvas.height - 35;
+            basket.y = canvas.height - 40;
         }
 
         function moveBasket(clientX) {
             const rect = canvas.getBoundingClientRect();
             basket.x = (clientX - rect.left) - basket.w / 2;
+            if (basket.x < 0) basket.x = 0;
+            if (basket.x > canvas.width - basket.w) basket.x = canvas.width - basket.w;
         }
 
         canvas.addEventListener('mousemove', (e) => { if (gameRunning) moveBasket(e.clientX); });
@@ -457,14 +466,16 @@
             if (!gameRunning) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            ctx.font = '26px sans-serif';
-            ctx.fillText('🧺', basket.x, basket.y + 24);
+            // Draw Basket
+            ctx.font = '28px sans-serif';
+            ctx.fillText('🧺', basket.x + 12, basket.y + 26);
 
-            if (Math.random() < 0.06) {
+            // Balanced spawn rate and slower falling speed so it is easy to catch
+            if (Math.random() < 0.045) {
                 items.push({
-                    x: Math.random() * (canvas.width - 25),
-                    y: -20,
-                    speed: 2 + Math.random() * 2.5,
+                    x: Math.random() * (canvas.width - 30),
+                    y: -25,
+                    speed: 1.6 + Math.random() * 1.4,
                     sym: activeEmojis[Math.floor(Math.random() * activeEmojis.length)]
                 });
             }
@@ -474,11 +485,12 @@
                 it.y += it.speed;
                 ctx.fillText(it.sym, it.x, it.y);
 
-                if (it.y >= basket.y - 10 && it.x >= basket.x - 15 && it.x <= basket.x + basket.w) {
+                // Balanced collision box
+                if (it.y >= basket.y - 12 && it.x >= basket.x - 10 && it.x <= basket.x + basket.w + 5) {
                     score++;
                     gameScore.innerText = score;
                     items.splice(i, 1);
-                } else if (it.y > canvas.height + 20) {
+                } else if (it.y > canvas.height + 25) {
                     items.splice(i, 1);
                 }
             }
@@ -498,28 +510,28 @@
                 renderParticles();
 
                 document.getElementById('heroTitle').innerText = "💀 nightmare mode 💀";
-                document.getElementById('heroSub').innerText = "cheese everywhere • waking up early • brushing teeth curse 🤮";
+                document.getElementById('heroSub').innerText = "cheese everywhere • waking up early • brushing teeth curse";
                 document.getElementById('evilBtn').innerText = "GET ME OUT OF HERE NOW 🧼✨";
                 document.getElementById('warningTag').innerText = "🚨 EVERYTHING YOU HATE IS HAPPENING 🚨";
                 
                 document.getElementById('moodTitle').innerText = "⏰ forced morning alarm";
-                document.getElementById('moodDesc').innerText = "you have to wake up at 5:00 AM right now!! sleep is cancelled 😭";
+                document.getElementById('moodDesc').innerText = "you have to wake up at 5:00 AM right now, sleep is cancelled";
                 
                 document.getElementById('snackTitle').innerText = "🪥 cursed snack bar";
-                document.getElementById('snackDesc').innerText = "eating strong cheddar cheese right after brushing your teeth! 🤮";
+                document.getElementById('snackDesc').innerText = "eating strong cheddar cheese right after brushing your teeth";
                 
                 document.getElementById('gardenTitle').innerText = "🥀 dead wilted plants";
-                document.getElementById('gardenDesc').innerText = "no cute flowers allowed, only moldy cheese chunks here :/";
+                document.getElementById('gardenDesc').innerText = "no cute flowers allowed, only moldy cheese chunks here";
 
                 document.getElementById('unlovedTitle').innerText = "🤬 toxic degrading zone";
-                document.getElementById('unlovedDesc').innerText = "someone is being super mean and degrading and you're too sensitive for this! 😭💔";
+                document.getElementById('unlovedDesc').innerText = "someone is being unkind and degrading and it is overwhelming";
 
                 document.getElementById('e1').innerText = '🧀';
                 document.getElementById('e2').innerText = '🤮';
                 document.getElementById('e3').innerText = '⏰';
                 document.getElementById('e4').innerText = '🪥';
 
-                alert("🤢 OH NO YUCK!! CHEESE EXPLOSION & 5 AM ALARMS! HIT THAT GREEN ESCAPE BUTTON QUICK!!");
+                alert("Oh no! Cheese explosion and 5:00 AM alarms! Hit that green escape button quickly!");
             } else {
                 body.classList.remove('cheese-nightmare');
                 activeEmojis = CUTE_EMOJIS;
@@ -527,27 +539,27 @@
 
                 document.getElementById('heroTitle').innerText = "just for you 🫶";
                 document.getElementById('heroSub').innerText = "all your favorite things in one little spot ✨";
-                document.getElementById('evilBtn').innerText = "DO NOT CLICK 🚫";
-                document.getElementById('warningTag').innerText = "⚠️ do NOT press this button ⚠️";
+                document.getElementById('evilBtn').innerText = "✨ DO NOT CLICK 🚫 ✨";
+                document.getElementById('warningTag').innerText = "⚠️ DANGER: DO NOT PRESS THIS BUTTON ⚠️";
 
                 document.getElementById('moodTitle').innerText = "💭 daily mood check";
-                document.getElementById('moodDesc').innerText = "tap whenever you need a little reminder of how cool you are :p";
+                document.getElementById('moodDesc').innerText = "tap whenever you need a little reminder of how cool you are";
                 
                 document.getElementById('snackTitle').innerText = "🍰 snack tracker";
-                document.getElementById('snackDesc').innerText = "tap what you're craving or snacking on right now!";
+                document.getElementById('snackDesc').innerText = "tap what you are craving or snacking on right now";
                 
                 document.getElementById('gardenTitle').innerText = "🌸 pick your flowers";
                 document.getElementById('gardenDesc').innerText = "tulips are cute, but lilies are honestly way prettier. tap to grow them!";
 
                 document.getElementById('unlovedTitle').innerText = "🐆 loving the unloved 🐛";
-                document.getElementById('unlovedDesc').innerText = "giving all the love to the weird & cool animals—from big cats and cheetahs to sweet little millipedes! 💛";
+                document.getElementById('unlovedDesc').innerText = "giving all the love to the weird and cool animals—from big cats and cheetahs to sweet little millipedes! 💛";
 
                 document.getElementById('e1').innerText = '🍦';
                 document.getElementById('e2').innerText = '🧁';
                 document.getElementById('e3').innerText = '🍩';
                 document.getElementById('e4').innerText = '🍣';
 
-                alert("✨ phew! back to the safe pink & teal aesthetic zone 🌸💖");
+                alert("Phew! Back to the safe pink and teal aesthetic zone!");
             }
         }
     </script>
